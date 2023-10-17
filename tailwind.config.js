@@ -2,8 +2,14 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}",],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        Tilt: ["Tilt Neon", "sans-serif"],
+      },
+    },
   },
-  plugins: [],
+  plugins: [
+
+  ],
 }
 
