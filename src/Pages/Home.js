@@ -3,7 +3,7 @@ import rock from "../assets/rock.png";
 import discord from "../assets/discord-w.png";
 
 const Home = () => {
-  const video = "https://drive.google.com/file/d/1YDYlrfiWa88HP7R8-poAxYSk6gdO_dOT/view?usp=share_link"
+  const video = "https://aaikyam-music.s3.ap-south-1.amazonaws.com/socialsbg/_import_61b44313f40047.97328362.mp4"
   return (
     <div className="relative bg-black  bg-cover bg-center w-screen h-screen grid grid-cols-2 p-16">
       <video
@@ -14,6 +14,8 @@ const Home = () => {
       >
         <source src={video} type="video/mp4" />
       </video>
+
+
 
       <div className=" z-10 w-full flex flex-col items-center py-16">
         <div className=" w-[70%] my-10 mx-auto flex flex-col items-center">
