@@ -37,7 +37,7 @@ const Home = () => {
 
         <div className=" z-10 w-full flex flex-col items-center py-16">
           <div className=" w-[70%] my-10 mx-auto flex flex-col items-center">
-            <div className=" text-white font-Orbitron sm:text-6xl lg:text-5xl text-center font-extrabold ">
+            <div className=" text-white font-Orbitron text-6xl lg:text-5xl text-center font-extrabold ">
               AAIKYAM
             </div>
           </div>
