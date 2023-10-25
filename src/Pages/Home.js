@@ -81,7 +81,7 @@ const Home = () => {
             </button>
           </div>
         </div>
-        <div className=" hidden  z-10 w-full h-full lg:flex lg:justify-center  lg:items-center">
+        <div className=" hidden  z-10  2xl:h-[70%] w-full h-full lg:flex lg:justify-center  lg:items-center">
           <img className=" w-full h-full object-contain" src={rock} alt="" />
         </div>
       </div>
