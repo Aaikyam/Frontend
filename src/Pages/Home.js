@@ -25,7 +25,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="relative bg-black  bg-cover bg-center w-screen h-screen lg:grid lg:grid-cols-2 p-12 lg:p-16">
+      <div className="relative bg-black  bg-cover bg-center w-screen h-screen sm:flex sm:justify-center sm:items-center lg:grid lg:grid-cols-2 p-12  sm:p-16">
         <video
           className="absolute opacity-30 top-0 left-0 z-0 object-cover w-full h-full"
           autoPlay
@@ -37,11 +37,11 @@ const Home = () => {
 
         <div className=" z-10 w-full flex flex-col items-center py-16">
           <div className=" w-[70%] my-10 mx-auto flex flex-col items-center">
-            <div className=" text-white font-Orbitron text-5xl text-center font-extrabold ">
+            <div className=" text-white font-Orbitron sm:text-6xl lg:text-5xl text-center font-extrabold ">
               AAIKYAM
             </div>
           </div>
-          <div className=" w-full lg:w-[70%] z-10 text-white text-center">
+          <div className=" w-full sm:w-[70%] z-10 text-white text-center">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
             bibendum, justo vel placerat sollicitudin, nibh lectus elementum
             risus, a lacinia felis ligula sit amet turpis. Mauris nibh purus,
@@ -60,7 +60,7 @@ const Home = () => {
               </div>
             </button>
           </div>
-          <div className=" my-4 bg-white w-full lg:w-[50%] flex justify-center items-center rounded-lg  ">
+          <div className=" my-4 bg-white w-full sm:w-[60%] lg:w-[50%] flex justify-center items-center rounded-lg  ">
             <input
               ref={emailInputRef}
               className="w-[60%] bg-white p-2 rounded-l-lg focus:outline-none"
