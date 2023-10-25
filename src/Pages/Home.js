@@ -60,7 +60,7 @@ const Home = () => {
               </div>
             </button>
           </div>
-          <div className=" my-4 bg-white w-full sm:w-[60%] lg:w-[50%] flex justify-center items-center rounded-lg  ">
+          <div className="z-10 my-4 bg-white w-full sm:w-[60%] lg:w-[50%] flex justify-center items-center rounded-lg  ">
             <input
               ref={emailInputRef}
               className="w-[60%] bg-white p-2 rounded-l-lg focus:outline-none"
