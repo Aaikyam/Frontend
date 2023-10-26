@@ -7,7 +7,8 @@ const FeaturePopup = ({ onClose,email }) => {
   const [musicfile, setMusicfile] = useState(null);
   const [isActive, setIsActive] = useState(false);
   const [selected, setSelected] = useState("Social Media");
-  const [uploading, setUploading] = useState(false); // Added uploading state
+  const [uploading, setUploading] = useState(false);
+  const [uploadDone, setUploadDone] = useState(false); // Added uploading state
   const [fileUrl, setFileUrl] = useState(""); // Added state to store the received URL
   const options = ["instagram", "twitter", "facebook"];
   
@@ -65,7 +66,7 @@ const FeaturePopup = ({ onClose,email }) => {
           setFileUrl(data.music_url);
           console.log("url",data.music_url)
           setUploading(false);
-          
+          setUploadDone(true)
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -163,9 +164,9 @@ const FeaturePopup = ({ onClose,email }) => {
       ) : (
         uploading ? (
           <button disabled>Uploading...</button>
-        ) : (
+        ) : !uploadDone ?(
           <button onClick={handleUpload}>Upload</button>
-        )
+        ) : (<button onClick={handleUpload}>Done</button>)
       )}
     </div>
 
