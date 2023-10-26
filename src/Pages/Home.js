@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import rock from "../assets/rock.png";
-import discord from "../assets/discord-w.png";
 import FeaturePopup from "../components/FeaturedPopup";
+import '../App.css'
 
 const Home = () => {
   const video =
@@ -21,13 +21,14 @@ const Home = () => {
 
   const closePopup = () => {
     setShowPopup(false);
+    setEmail("");
   };
 
   return (
     <>
       <div className="relative bg-black  bg-cover bg-center w-screen h-screen sm:flex sm:justify-center sm:items-center lg:grid lg:grid-cols-2 p-12  sm:p-16">
         <video
-          className="absolute opacity-30 top-0 left-0 z-0 object-cover w-full h-full"
+          className="absolute opacity-30 top-0 left-0 z-0 object-cover w-screen h-screen"
           autoPlay
           loop
           muted
@@ -35,7 +36,7 @@ const Home = () => {
           <source src={video} type="video/mp4" />
         </video>
 
-        <div className=" z-10 w-full flex flex-col items-center py-16">
+        <div className=" relative z-10 w-full h-[90vh] flex flex-col items-center justify-center ">
           <div className=" w-[70%] my-10 mx-auto flex flex-col items-center">
             <div className=" text-white font-Orbitron text-6xl lg:text-5xl text-center font-extrabold ">
               AAIKYAM
@@ -50,14 +51,15 @@ const Home = () => {
 
           {/* <div className=" w-[60%] h-24 mx-auto bg-black my-10"></div> */}
           <div className=" w-full flex justify-center items-center my-10">
-            <button className=" z-10  mx-2   bg-[#778CDB] flex items-center p-2 rounded-lg">
-              <div className=" w-full h-full mx-1">
+            <button className="tubelight">
+              {/* <div className=" w-full h-full mx-1">
                 <img className=" w-full h-full" src={discord} alt="" />
-              </div>
-              <div className=" text-white flex flex-col items-center mx-1">
-                <div className=" font-Salsa">join us on</div>
+              </div> */}
+              JOIN OUR DISCORD
+              {/* <div className=" text-white flex flex-col items-center m-1 p-2 rounded-lg ">
+                <div className=" font-Salsa text-xl">JOIN US ON</div>
                 <div className=" font-Salsa text-xl">DISCORD</div>
-              </div>
+              </div> */}
             </button>
           </div>
           <div className="z-10 my-4 bg-white w-full sm:w-[60%] lg:w-[50%] flex justify-center items-center rounded-lg  ">
@@ -65,6 +67,7 @@ const Home = () => {
               ref={emailInputRef}
               className="w-[60%] bg-white p-2 rounded-l-lg focus:outline-none"
               type="email"
+              name="email"
               required
               placeholder="Enter your Email"
               value={email}
@@ -81,11 +84,11 @@ const Home = () => {
             </button>
           </div>
         </div>
-        <div className=" hidden  z-10  2xl:h-[70%] w-full h-full lg:flex lg:justify-center  lg:items-center">
-          <img className=" w-full h-full object-contain" src={rock} alt="" />
+        <div className=" hidden  z-10   w-full sm:h-[90vh] lg:flex lg:justify-center  lg:items-center">
+          <img className=" w-full 2xl:h-[70%] sm:h-full object-contain object-center" src={rock} alt="" />
         </div>
       </div>
-      {showPopup && <FeaturePopup onClose={closePopup} />}
+      {showPopup && <FeaturePopup onClose={closePopup} email={email} />}
     </>
   );
 };
