@@ -2,6 +2,10 @@ import React, { useState, useRef } from "react";
 import rock from "../assets/rock.png";
 import FeaturePopup from "../components/FeaturedPopup";
 import "../App.css";
+import Socials from "../components/Socials";
+import Announcement from "../components/Announcement";
+import {FaDiscord} from "react-icons/fa"
+
 
 const Home = () => {
   const video =
@@ -26,7 +30,9 @@ const Home = () => {
 
   return (
     <>
-      <div className="relative bg-black  bg-cover bg-center w-screen h-screen sm:flex sm:justify-center sm:items-center lg:grid lg:grid-cols-2 p-12  sm:p-16">
+    
+      <div className="relative bg-black  bg-cover bg-center w-screen h-screen sm:flex sm:justify-center sm:items-center lg:grid lg:grid-cols-2 px-12  sm:p-16">
+
         <video
           className="absolute opacity-30 top-0 left-0 z-0 object-cover w-screen h-screen"
           autoPlay
@@ -35,23 +41,25 @@ const Home = () => {
         >
           <source src={video} type="video/mp4" />
         </video>
+       <Announcement/>
 
-        <div className=" relative z-10 w-full h-[90vh] flex flex-col items-center justify-center ">
+        <div className=" relative z-10 w-full h-[90vh] 2xl:h-[85vh] flex flex-col items-center justify-center ">
           <div className=" w-[70%] my-10 mx-auto flex flex-col items-center">
             <div className="text-white animate-neon SAMAN__ text-7xl lg:text-7xl text-center font-extrabold">
               AAIKYAM
             </div>
           </div>
           <div className=" w-full sm:w-[70%] z-10 text-white text-center">
-          Explore the Aaikyam experience. Join a thriving community of creators, where diverse melodies weave a rich musical narrative. Share your work in 'Get Featured,' allowing your talent to shine. Stay tuned for monetization tools, nurturing your art into an asset. Join our vibrant Discord and social platforms, and grow in a collaborative, user-centered space.
-          </div>
+Experience Aaikyam: Where Music Unites and cultures Resonates ! Join our vibrant creator community, share your talent in 'Get Featured,' and watch your art flourish. Stay tuned for monetization tools to turn your passion into an asset. Connect on Discord and social platforms for a collaborative journey! </div>
 
           {/* <div className=" w-[60%] h-24 mx-auto bg-black my-10"></div> */}
-          <div onClick={()=>window.open("https://discord.gg/etNkeftteT", "_blank")} className=" w-full flex justify-center items-center my-10">
-            <button className="tubelight hover:animate-bounce">
-              JOIN OUR DISCORD
-            </button>
-          </div>
+          <button onClick={()=>window.open("https://discord.gg/etNkeftteT", "_blank")} className=" w-[30%] flex justify-center items-center p-2 my-8 border-[1px] rounded-lg bg-white text-[#e96c32]">
+            <div className="mx-1 font-semibold ">
+              JOIN DISCORD
+            </div>
+            <div className=" mx-1"><FaDiscord size={30}/></div>
+
+          </button>
           <div className="z-10 my-4 bg-white w-full sm:w-[60%] lg:w-[50%] flex justify-center items-center rounded-lg  ">
             <input
               ref={emailInputRef}
@@ -74,7 +82,7 @@ const Home = () => {
             </button>
           </div>
         </div>
-        <div className=" hidden  z-10   w-full sm:h-[90vh] lg:flex lg:justify-center  lg:items-center">
+        <div className=" hidden  z-10   w-full sm:h-[90vh] 2xl:h-[85vh] lg:flex lg:justify-center  lg:items-center">
           <img
             className=" w-full 2xl:h-[70%] sm:h-full object-contain object-center"
             src={rock}
@@ -83,6 +91,8 @@ const Home = () => {
         </div>
       </div>
       {showPopup && <FeaturePopup onClose={closePopup} email={email} />}
+      
+      <Socials/>
     </>
   );
 };
