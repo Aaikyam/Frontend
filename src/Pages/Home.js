@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import rock from "../assets/rock.png";
 import FeaturePopup from "../components/FeaturedPopup";
-import '../App.css'
+import "../App.css";
 
 const Home = () => {
   const video =
@@ -38,7 +38,7 @@ const Home = () => {
 
         <div className=" relative z-10 w-full h-[90vh] flex flex-col items-center justify-center ">
           <div className=" w-[70%] my-10 mx-auto flex flex-col items-center">
-            <div className=" text-white font-Orbitron text-6xl lg:text-5xl text-center font-extrabold ">
+            <div className="text-white font-SAMAN__ text-7xl lg:text-7xl text-center font-extrabold">
               AAIKYAM
             </div>
           </div>
@@ -85,7 +85,11 @@ const Home = () => {
           </div>
         </div>
         <div className=" hidden  z-10   w-full sm:h-[90vh] lg:flex lg:justify-center  lg:items-center">
-          <img className=" w-full 2xl:h-[70%] sm:h-full object-contain object-center" src={rock} alt="" />
+          <img
+            className=" w-full 2xl:h-[70%] sm:h-full object-contain object-center"
+            src={rock}
+            alt=""
+          />
         </div>
       </div>
       {showPopup && <FeaturePopup onClose={closePopup} email={email} />}
