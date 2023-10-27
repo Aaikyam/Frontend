@@ -11,15 +11,15 @@ module.exports = {
     },
   },
   plugins: [
-    function ({ addBase, theme }) {
-      addBase({
-        "@font-face": {
-          fontFamily: "SAMAN__",
-          src: `url('/src/fonts/SAMAN___.woff2') format('woff2')`, // Adjust the path accordingly
-          fontWeight: "normal",
-          fontStyle: "normal",
-        },
-      });
-    },
+    // function ({ addBase, theme }) {
+    //   addBase({
+    //     "@font-face": {
+    //       fontFamily: "SAMAN__",
+    //       src: `url('/src/fonts/SAMAN___.woff2') format('woff2')`, // Adjust the path accordingly
+    //       fontWeight: "normal",
+    //       fontStyle: "normal",
+    //     },
+    //   });
+    // },
   ],
 };
