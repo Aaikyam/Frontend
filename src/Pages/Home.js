@@ -29,7 +29,7 @@ const Home = () => {
   };
 
   return (
-    <>
+    <div className=" relative">
     
       <div className="relative bg-black  bg-cover bg-center w-screen h-screen sm:flex sm:justify-center sm:items-center lg:grid lg:grid-cols-2 px-12  sm:p-16">
 
@@ -41,11 +41,11 @@ const Home = () => {
         >
           <source src={video} type="video/mp4" />
         </video>
-       <Announcement/>
+       
 
         <div className=" relative z-10 w-full h-[90vh] 2xl:h-[85vh] flex flex-col items-center justify-center ">
           <div className=" w-[70%] my-10 mx-auto flex flex-col items-center">
-            <div className="text-white animate-neon SAMAN__ text-7xl lg:text-7xl text-center font-extrabold">
+            <div className="text-white animate-neon SAMAN__ text-7xl text-center font-extrabold">
               AAIKYAM
             </div>
           </div>
@@ -53,8 +53,8 @@ const Home = () => {
 Experience Aaikyam: Where Music Unites and cultures Resonates ! Join our vibrant creator community, share your talent in 'Get Featured,' and watch your art flourish. Stay tuned for monetization tools to turn your passion into an asset. Connect on Discord and social platforms for a collaborative journey! </div>
 
           {/* <div className=" w-[60%] h-24 mx-auto bg-black my-10"></div> */}
-          <button onClick={()=>window.open("https://discord.gg/etNkeftteT", "_blank")} className=" w-[30%] flex justify-center items-center p-2 my-8 border-[1px] rounded-lg bg-white text-[#e96c32]">
-            <div className="mx-1 font-semibold ">
+          <button onClick={()=>window.open("https://discord.gg/etNkeftteT", "_blank")} className=" w-[45%] sm:w-[40%] md:w-[30%] flex justify-center items-center p-2 my-8 border-[1px] rounded-lg bg-white text-[#e96c32]">
+            <div className="mx-1 text-sm sm:text-base font-semibold ">
               JOIN DISCORD
             </div>
             <div className=" mx-1"><FaDiscord size={30}/></div>
@@ -91,9 +91,9 @@ Experience Aaikyam: Where Music Unites and cultures Resonates ! Join our vibrant
         </div>
       </div>
       {showPopup && <FeaturePopup onClose={closePopup} email={email} />}
-      
+      <Announcement/>
       <Socials/>
-    </>
+    </div>
   );
 };
 
