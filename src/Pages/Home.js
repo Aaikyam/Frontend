@@ -38,28 +38,18 @@ const Home = () => {
 
         <div className=" relative z-10 w-full h-[90vh] flex flex-col items-center justify-center ">
           <div className=" w-[70%] my-10 mx-auto flex flex-col items-center">
-            <div className="text-white font-SAMAN__ text-7xl lg:text-7xl text-center font-extrabold">
+            <div className="text-white animate-neon SAMAN__ text-7xl lg:text-7xl text-center font-extrabold">
               AAIKYAM
             </div>
           </div>
           <div className=" w-full sm:w-[70%] z-10 text-white text-center">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-            bibendum, justo vel placerat sollicitudin, nibh lectus elementum
-            risus, a lacinia felis ligula sit amet turpis. Mauris nibh purus,
-            porttitor eget finibus, congue quis turpis.
+          Explore the Aaikyam experience. Join a thriving community of creators, where diverse melodies weave a rich musical narrative. Share your work in 'Get Featured,' allowing your talent to shine. Stay tuned for monetization tools, nurturing your art into an asset. Join our vibrant Discord and social platforms, and grow in a collaborative, user-centered space.
           </div>
 
           {/* <div className=" w-[60%] h-24 mx-auto bg-black my-10"></div> */}
-          <div className=" w-full flex justify-center items-center my-10">
-            <button className="tubelight">
-              {/* <div className=" w-full h-full mx-1">
-                <img className=" w-full h-full" src={discord} alt="" />
-              </div> */}
+          <div onClick={()=>window.open("https://discord.gg/etNkeftteT", "_blank")} className=" w-full flex justify-center items-center my-10">
+            <button className="tubelight hover:animate-bounce">
               JOIN OUR DISCORD
-              {/* <div className=" text-white flex flex-col items-center m-1 p-2 rounded-lg ">
-                <div className=" font-Salsa text-xl">JOIN US ON</div>
-                <div className=" font-Salsa text-xl">DISCORD</div>
-              </div> */}
             </button>
           </div>
           <div className="z-10 my-4 bg-white w-full sm:w-[60%] lg:w-[50%] flex justify-center items-center rounded-lg  ">

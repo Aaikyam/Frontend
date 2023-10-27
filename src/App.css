@@ -19,3 +19,9 @@
     background-position: -200% 0;
   }
 }
+
+.animate-neon {
+  color: #fff;
+  text-shadow: 0 0 10px #e96c32,0 0 20px #e96c32,0 0 40px #e96c32,0 0 80px #e96c32,0 0 160px #e96c32;
+  font-size: 6rem;
+}
