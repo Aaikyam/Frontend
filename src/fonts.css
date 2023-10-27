@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'SAMAN__';
-    src: url('/src/fonts/SAMAN___.TTF') format('truetype');
+    src: url('/src/fonts/SAMAN___.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
   }
