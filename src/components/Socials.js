@@ -53,27 +53,27 @@ const Socials = () => {
   ];
 
   return (
-    <div className="hidden lg:flex flex-col top-[30%] right-5 fixed">
-      <ul>
-        {links.map(({ id, child, href}) => (
-          <li
-            key={id}
-            className={
-              `"flex justify-between items-center p-4   my-2 rounded-full ml-2 hover:ml-2  hover:scale-125 duration-300 "`
-            }
-          >
-            <a
-              href={href}
-              className="flex justify-between items-center w-full text-white"
-              target="_blank"
-              rel="noreferrer"
-            >
-              {child}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <div className=" w-full md:w-12 flex flex-col md:flex-col justify-center items-center bottom-[5%]  md:top-[10%] md:right-5 absolute md:fixed">
+       
+  <ul className=" w-full flex flex-row md:flex-col justify-center items-center ">
+    {links.map(({ id, child, href }) => (
+      <li
+        key={id}
+        className={`flex justify-between items-center p-4 my-2 rounded-full ml-2 hover:ml-2 hover:scale-125 duration-300`}
+      >
+        <a
+          href={href}
+          className="flex justify-between items-center w-full text-white"
+          target="_blank"
+          rel="noreferrer"
+        >
+          {child}
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
+
   );
 };
 
