@@ -53,7 +53,7 @@ const Socials = () => {
   ];
 
   return (
-    <div className=" w-full md:w-12 flex flex-col md:flex-col justify-center items-center bottom-[5%]  md:top-[10%] md:right-5 absolute md:fixed">
+    <div className=" w-full md:w-12 flex flex-col md:flex-col justify-center items-center bottom-[6%]  md:top-[10%] md:right-5 absolute md:fixed">
        
   <ul className=" w-full flex flex-row md:flex-col justify-center items-center ">
     {links.map(({ id, child, href }) => (

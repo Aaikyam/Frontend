@@ -6,7 +6,9 @@ import "../App.css";
 import Socials from "../components/Socials";
 import Announcement from "../components/Announcement";
 import {FaDiscord} from "react-icons/fa"
+import {BsPlayCircle,BsPauseCircle} from "react-icons/bs"
 import Loader from "../components/Loader";
+import AudioPlayer from "../components/AudioPlayer";
 
 const fetchDataFromApi = async () => {
   try {
@@ -27,7 +29,9 @@ const Home = () => {
   const [email, setEmail] = useState("");
   const emailInputRef = useRef(null);
   const [loading, setLoading] = useState(true);
-  const [audioElement, setAudioElement] = useState(null);
+  const [audioElement, setAudioElement] = useState({});
+  const [audioon,setAudioOn]=useState(false)
+  
 
 
   const openPopup = () => {
@@ -43,34 +47,24 @@ const Home = () => {
     setEmail("");
   };
 
- 
-
-  
-  const playAudio = () => {
-    if (audioElement) {
-      audioElement.play();
-    }
-  };
-
-  const pauseAudio = () => {
-    if (audioElement) {
-      audioElement.pause();
-    }
-  };
-
-
+  const handleaudio =()=>{
+setAudioOn(true)
+  }
+  const handleaudioexit=()=>{
+    setAudioOn(false)
+  }
 
   useEffect(() => {
     const fetchDataAndPlayAudio = async () => {
       const data = await fetchDataFromApi();
       const itemtoPlay = data.find((item) => item._isFeatured === false);
       if (itemtoPlay && itemtoPlay.music) {
-        const audio = new Audio(itemtoPlay.music);
-        setAudioElement(audio);
+        setAudioElement(itemtoPlay);
+        
       }
       setTimeout(() => {
         setLoading(false);
-      }, 5000);
+      }, 2000);
     };
     fetchDataAndPlayAudio();
   }, []);
@@ -80,9 +74,11 @@ const Home = () => {
     <div className=" relative"  >
       {loading ?(
         <Loader/>
-      ):( <div className=" relative">
-    
-      <div className="relative bg-black  bg-cover bg-center w-screen h-screen sm:flex sm:justify-center sm:items-center lg:grid lg:grid-cols-2 px-12  sm:p-16">
+      ):( 
+      <div onMouseEnter={handleaudio} onMouseLeave={handleaudioexit} className=" w-screen h-screen relative">
+  <AudioPlayer audioon={audioon} audioElement={audioElement} />
+      <div  className="relative bg-black  bg-cover bg-center w-screen h-screen sm:flex sm:justify-center sm:items-center lg:grid lg:grid-cols-2 px-12  sm:p-16">
+        
 
         <video
           className="absolute opacity-30 top-0 left-0 z-0 object-cover transform scale-x-[-1] w-screen h-screen"
@@ -135,17 +131,18 @@ Experience Aaikyam: Where Music Unites and cultures Resonates ! Join our vibrant
         </div>
         <div className=" hidden  z-10   w-full sm:h-[90vh] 2xl:h-[85vh] lg:flex lg:justify-center  lg:items-center">
           <img
-            className=" w-full 2xl:h-[70%] sm:h-full object-contain object-center"
+            className=" relative w-full 2xl:h-[70%] sm:h-full object-contain object-center"
             src={rock}
             alt=""
           />
+          
         </div>
       </div>
       {showPopup && <FeaturePopup onClose={closePopup} email={email} />}
       <Announcement/>
       <Socials/>
     
-      <div
+      {/* <div
   className="audio-controls"
   style={{
     position: 'absolute',
@@ -192,7 +189,7 @@ Experience Aaikyam: Where Music Unites and cultures Resonates ! Join our vibrant
   >
     Pause
   </button>
-</div>
+</div> */}
 
     </div>
       )}
