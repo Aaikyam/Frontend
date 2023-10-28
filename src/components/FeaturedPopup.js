@@ -1,16 +1,28 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { MdClose } from "react-icons/md";
+import {TiTick} from "react-icons/ti"
 
 const FeaturePopup = ({ onClose,email }) => {
   const [title, setTitle] = useState("");
+  const [artist, setArtist] = useState("");
   const [username, setUserName] = useState("");
   const [musicfile, setMusicfile] = useState(null);
   const [isActive, setIsActive] = useState(false);
-  const [selected, setSelected] = useState("Social Media");
+  const [selected, setSelected] = useState("instagram");
   const [uploading, setUploading] = useState(false);
   const [uploadDone, setUploadDone] = useState(false); // Added uploading state
+  const [submitDone, setSubmitDone] = useState(false);
   const [fileUrl, setFileUrl] = useState(""); // Added state to store the received URL
   const options = ["instagram", "twitter", "facebook"];
+
+  const UploadDoneIn=() => {
+    
+      setTimeout(() => {
+        setSubmitDone(false);
+        onClose();
+      }, 1000);
+
+  };
   
 
   const handleFormSubmit =  (e) => {
@@ -21,6 +33,7 @@ const FeaturePopup = ({ onClose,email }) => {
       // Perform the POST request with the fileUrl
       const userObject = {
         [selected]: username,
+        artist,
         email: email,
         title:title,
         music: fileUrl,
@@ -36,7 +49,7 @@ const FeaturePopup = ({ onClose,email }) => {
             },
           })
             .then((response) => response.json())
-            .then((data) => {console.log(data); onClose();})
+            .then((data) => { setSubmitDone(true); UploadDoneIn();})
             .catch((error) => console.error(error));
     
   };
@@ -65,7 +78,6 @@ const FeaturePopup = ({ onClose,email }) => {
       })
         .then((data) => {
           setFileUrl(data.music_url);
-          console.log("url",data.music_url)
           setUploading(false);
           setUploadDone(true)
         })
@@ -77,8 +89,18 @@ const FeaturePopup = ({ onClose,email }) => {
   };
 
   return (
+    <>{
+      submitDone?
+      <div className="fixed inset-0  z-50 bg-opacity-70 bg-gray-900 backdrop-blur-md w-screen h-screen flex justify-center items-center">
+        <div className="w-56 h-56 bg-green-500 rounded-full flex justify-center items-center ">
+          <TiTick size={150}/>
+        </div>
+      </div>
+      
+      :
+    
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-70 bg-gray-900 backdrop-blur-md">
-      <div className="bg-gray-600 text-white w-[90%] lg:w-1/3 p-8 rounded-lg shadow-lg">
+      <div className="bg-gray-800 text-white w-[90%] lg:w-1/3 p-8 rounded-lg shadow-lg">
         <div className="text-2xl text-center font-semibold mb-4">
           Get Your Music Featured On Our Website
         </div>
@@ -120,7 +142,7 @@ const FeaturePopup = ({ onClose,email }) => {
               type="text"
               name="username"
               placeholder="Social media Username/Id"
-              className="w-full p-2 border rounded-lg focus:outline-none"
+              className="w-full p-2 border rounded-lg text-black focus:outline-none"
               value={username}
               required
               onChange={(e) => setUserName(e.target.value)}
@@ -129,9 +151,20 @@ const FeaturePopup = ({ onClose,email }) => {
           <div className="mb-4">
             <input
               type="text"
+              name="artist"
+              placeholder="Artist"
+              className="w-full p-2 border rounded-lg text-black focus:outline-none"
+              value={artist}
+              required
+              onChange={(e) => setArtist(e.target.value)}
+            />
+          </div>
+          <div className="mb-4">
+            <input
+              type="text"
               name="title"
               placeholder="Title"
-              className="w-full p-2 border rounded-lg focus:outline-none"
+              className="w-full p-2 border rounded-lg text-black focus:outline-none"
               value={title}
               required
               onChange={(e) => setTitle(e.target.value)}
@@ -141,7 +174,7 @@ const FeaturePopup = ({ onClose,email }) => {
       {!musicfile ? (
         <div>Music File</div>
       ) : (
-        <span className="mx-2 text-xs text-red-500">{musicfile.name}</span>
+        <span className={`mx-2 text-xs ${!uploadDone?"text-red-500":"text-green-500"}`}>{musicfile.name}</span>
       )}
       <input
         className="hidden"
@@ -155,7 +188,7 @@ const FeaturePopup = ({ onClose,email }) => {
       {!musicfile ? (
         <label
           htmlFor="fileInput"
-          className="px-3 py-2 rounded-full border flex justify-between items-center cursor-pointer"
+          className="px-3 py-2 rounded-full border-[1px] border-black flex justify-between items-center cursor-pointer"
         >
           <div className="mx-1">Select File</div>
           <div className="mx-1">
@@ -164,17 +197,17 @@ const FeaturePopup = ({ onClose,email }) => {
         </label>
       ) : (
         uploading ? (
-          <button disabled>Uploading...</button>
+          <button className=" text-black text-lg animate-spin" disabled>...</button>
         ) : !uploadDone ?(
-          <button onClick={handleUpload}>Upload</button>
-        ) : (<button onClick={handleUpload}>Done</button>)
+          <button className="px-3 py-2 text-black rounded-full border-[1px] border-black flex justify-between items-center cursor-pointer" onClick={handleUpload}>Upload</button>
+        ) : (<button className=" text-green-500" onClick={handleUpload}><TiTick size={25}/></button>)
       )}
     </div>
 
           <div className=" text-center w-full">
             <button
               type="submit"
-              className=" w-1/2  bg-blue-500 text-center text-white px-4 py-2 rounded-lg"
+              className=" w-1/2  bg-[#e96c32] text-center text-white px-4 py-2 rounded-lg"
             >
               Submit
             </button>
@@ -188,7 +221,8 @@ const FeaturePopup = ({ onClose,email }) => {
           <MdClose size={40} />
         </button>
       </div>
-    </div>
+    </div>}
+    </>
   );
 };
 

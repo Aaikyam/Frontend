@@ -24,7 +24,7 @@ const Announcement = () => {
   }, []);
 
   return (
-    <div className="fixed border-y-2 border-[#e96c32] w-full h-6 z-50 sm:bottom-5 top-3 sm:top-auto bg-white flex justify-around items-center text-black backdrop-blur-md">
+    <div className="fixed border-y-2 border-[#e96c32] w-full h-6 z-40 sm:top-5 top-3  bg-white flex justify-around items-center text-black backdrop-blur-md">
       <Marquee>
         {announcementData.map((item, index) => (
           <div
