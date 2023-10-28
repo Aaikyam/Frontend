@@ -2,14 +2,14 @@ import React, { useState, useRef } from "react";
 import rock from "../assets/rock.png";
 import FeaturePopup from "../components/FeaturedPopup";
 import "../App.css";
-import video from "./bg-video.mp4"
+
 import Socials from "../components/Socials";
 import Announcement from "../components/Announcement";
 import {FaDiscord} from "react-icons/fa"
 
 
 const Home = () => {
-  
+  const video="https://aaikyam-music.s3.ap-south-1.amazonaws.com/socialsbg/_import_61b44313f40047.97328362+(1)+(1)+(1)+(1).mp4"
 
   const [showPopup, setShowPopup] = useState(false);
   const [email, setEmail] = useState("");
