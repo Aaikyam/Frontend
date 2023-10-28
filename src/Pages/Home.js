@@ -2,14 +2,13 @@ import React, { useState, useRef } from "react";
 import rock from "../assets/rock.png";
 import FeaturePopup from "../components/FeaturedPopup";
 import "../App.css";
+import video from "../assets/bg-video.mp4"
 import Socials from "../components/Socials";
 import Announcement from "../components/Announcement";
 import {FaDiscord} from "react-icons/fa"
 
 
 const Home = () => {
-  const video =
-    "https://aaikyam-music.s3.ap-south-1.amazonaws.com/socialsbg/_import_61b44313f40047.97328362.mp4";
 
   const [showPopup, setShowPopup] = useState(false);
   const [email, setEmail] = useState("");
@@ -34,7 +33,7 @@ const Home = () => {
       <div className="relative bg-black  bg-cover bg-center w-screen h-screen sm:flex sm:justify-center sm:items-center lg:grid lg:grid-cols-2 px-12  sm:p-16">
 
         <video
-          className="absolute opacity-30 top-0 left-0 z-0 object-cover w-screen h-screen"
+          className="absolute opacity-30 top-0 left-0 z-0 object-cover transform scale-x-[-1] w-screen h-screen"
           autoPlay
           loop
           muted
