@@ -2,13 +2,14 @@ import React, { useState, useRef } from "react";
 import rock from "../assets/rock.png";
 import FeaturePopup from "../components/FeaturedPopup";
 import "../App.css";
-import video from "../assets/bg-video.mp4"
+import video from "./bg-video.mp4"
 import Socials from "../components/Socials";
 import Announcement from "../components/Announcement";
 import {FaDiscord} from "react-icons/fa"
 
 
 const Home = () => {
+  
 
   const [showPopup, setShowPopup] = useState(false);
   const [email, setEmail] = useState("");
