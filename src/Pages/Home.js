@@ -27,6 +27,8 @@ const Home = () => {
   const [email, setEmail] = useState("");
   const emailInputRef = useRef(null);
   const [loading, setLoading] = useState(true);
+  const [audioElement, setAudioElement] = useState(null);
+
 
   const openPopup = () => {
     if (emailInputRef.current.checkValidity()) {
@@ -41,58 +43,41 @@ const Home = () => {
     setEmail("");
   };
 
+ 
+
+  
+  const playAudio = () => {
+    if (audioElement) {
+      audioElement.play();
+    }
+  };
+
+  const pauseAudio = () => {
+    if (audioElement) {
+      audioElement.pause();
+    }
+  };
+
+
+
   useEffect(() => {
-    const playAudioFor24Hours = async () => {
-      while (true) {
-        const data = await fetchDataFromApi();
-        const itemToPlay = data.find((item) => item._isFeatured === false);
-        if (itemToPlay) {
-          const audio = new Audio(itemToPlay.music);
-          audio.loop = true; // Set the audio to loop
-
-          const playOnHover = () => {
-            audio.play();
-          };
-
-          const pauseOnHoverExit = () => {
-            audio.pause();
-            audio.currentTime = 0; // Reset the audio time to the beginning
-          };
-
-          const element = document.getElementById("hover-element-id"); // Replace with the ID of the element you want to use for hover
-
-          if (element) {
-            element.addEventListener("mouseenter", playOnHover);
-            element.addEventListener("mouseleave", pauseOnHoverExit);
-          }
-
-          await new Promise((resolve) => setTimeout(resolve, 24 * 60 * 60 * 1000)); // 24 hours in milliseconds
-          if (element) {
-            element.removeEventListener("mouseenter", playOnHover);
-            element.removeEventListener("mouseleave", pauseOnHoverExit);
-          }
-
-          await fetch(`https://api.aaikyam.studio/update/item/${itemToPlay.id}`, {
-            method: "PUT",
-            body: JSON.stringify({ _isFeatured: true }),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
-        }
+    const fetchDataAndPlayAudio = async () => {
+      const data = await fetchDataFromApi();
+      const itemtoPlay = data.find((item) => item._isFeatured === false);
+      if (itemtoPlay && itemtoPlay.music) {
+        const audio = new Audio(itemtoPlay.music);
+        setAudioElement(audio);
       }
+      setTimeout(() => {
+        setLoading(false);
+      }, 5000);
     };
-
-    // Simulate a delay (you can replace this with actual loading logic)
-    setTimeout(() => {
-      setLoading(false); // Set loading to false to show content
-    }, 2000); // Replace 2000 with the actual loading time in milliseconds
-
-    playAudioFor24Hours();
+    fetchDataAndPlayAudio();
   }, []);
 
+
   return (
-    <div className=" relative">
+    <div className=" relative"  >
       {loading ?(
         <Loader/>
       ):( <div className=" relative">
@@ -159,10 +144,63 @@ Experience Aaikyam: Where Music Unites and cultures Resonates ! Join our vibrant
       {showPopup && <FeaturePopup onClose={closePopup} email={email} />}
       <Announcement/>
       <Socials/>
-    </div>)}
-   
+    
+      <div
+  className="audio-controls"
+  style={{
+    position: 'absolute',
+    top: '50%',
+    left: '0%',
+    transform: 'translateY(-50%)',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    background: 'rgba(255, 255, 255, 0.15)',
+    backdropFilter: 'blur(10px)',
+    padding: '10px',
+    borderRadius: '10px',
+  }}
+>
+  <button
+    onClick={playAudio}
+    style={{
+      padding: '10px 20px',
+      marginBottom: '10px',
+      backgroundColor: '#e96c32',
+      color: 'white',
+      border: 'none',
+      borderRadius: '5px',
+      cursor: 'pointer',
+      width: '100%',
+      boxSizing: 'border-box',
+    }}
+  >
+    Play
+  </button>
+  <button
+    onClick={pauseAudio}
+    style={{
+      padding: '10px 20px',
+      backgroundColor: '#e96c32',
+      color: 'white',
+      border: 'none',
+      borderRadius: '5px',
+      cursor: 'pointer',
+      width: '100%',
+      boxSizing: 'border-box',
+    }}
+  >
+    Pause
+  </button>
+</div>
+
     </div>
+      )}
+    </div>
+
+    
+
   );
-};
+}
 
 export default Home;
