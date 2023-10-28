@@ -8,9 +8,20 @@ import Announcement from "../components/Announcement";
 import {FaDiscord} from "react-icons/fa"
 import Loader from "../components/Loader";
 
+const fetchDataFromApi = async () => {
+  try {
+    const response = await fetch("https://api.aaikyam.studio/get/user");
+    const data = await response.json();
+    return data.Items;
+  } catch (error) {
+    console.error("Error fetching data from API", error);
+    return [];
+  }
+};
 
 const Home = () => {
-  const video="https://aaikyam-music.s3.ap-south-1.amazonaws.com/socialsbg/_import_61b44313f40047.97328362+(1)+(1)+(1)+(1).mp4"
+  const video =
+    "https://aaikyam-music.s3.ap-south-1.amazonaws.com/socialsbg/_import_61b44313f40047.97328362+(1)+(1)+(1)+(1).mp4";
 
   const [showPopup, setShowPopup] = useState(false);
   const [email, setEmail] = useState("");
@@ -31,10 +42,53 @@ const Home = () => {
   };
 
   useEffect(() => {
+    const playAudioFor24Hours = async () => {
+      while (true) {
+        const data = await fetchDataFromApi();
+        const itemToPlay = data.find((item) => item._isFeatured === false);
+        if (itemToPlay) {
+          const audio = new Audio(itemToPlay.music);
+          audio.loop = true; // Set the audio to loop
+
+          const playOnHover = () => {
+            audio.play();
+          };
+
+          const pauseOnHoverExit = () => {
+            audio.pause();
+            audio.currentTime = 0; // Reset the audio time to the beginning
+          };
+
+          const element = document.getElementById("hover-element-id"); // Replace with the ID of the element you want to use for hover
+
+          if (element) {
+            element.addEventListener("mouseenter", playOnHover);
+            element.addEventListener("mouseleave", pauseOnHoverExit);
+          }
+
+          await new Promise((resolve) => setTimeout(resolve, 24 * 60 * 60 * 1000)); // 24 hours in milliseconds
+          if (element) {
+            element.removeEventListener("mouseenter", playOnHover);
+            element.removeEventListener("mouseleave", pauseOnHoverExit);
+          }
+
+          await fetch(`https://api.aaikyam.studio/update/item/${itemToPlay.id}`, {
+            method: "PUT",
+            body: JSON.stringify({ _isFeatured: true }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+        }
+      }
+    };
+
     // Simulate a delay (you can replace this with actual loading logic)
     setTimeout(() => {
       setLoading(false); // Set loading to false to show content
     }, 2000); // Replace 2000 with the actual loading time in milliseconds
+
+    playAudioFor24Hours();
   }, []);
 
   return (
