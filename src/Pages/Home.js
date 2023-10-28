@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState,useEffect, useRef } from "react";
 import rock from "../assets/rock.png";
 import FeaturePopup from "../components/FeaturedPopup";
 import "../App.css";
@@ -6,6 +6,7 @@ import "../App.css";
 import Socials from "../components/Socials";
 import Announcement from "../components/Announcement";
 import {FaDiscord} from "react-icons/fa"
+import Loader from "../components/Loader";
 
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [email, setEmail] = useState("");
   const emailInputRef = useRef(null);
+  const [loading, setLoading] = useState(true);
 
   const openPopup = () => {
     if (emailInputRef.current.checkValidity()) {
@@ -28,8 +30,18 @@ const Home = () => {
     setEmail("");
   };
 
+  useEffect(() => {
+    // Simulate a delay (you can replace this with actual loading logic)
+    setTimeout(() => {
+      setLoading(false); // Set loading to false to show content
+    }, 2000); // Replace 2000 with the actual loading time in milliseconds
+  }, []);
+
   return (
     <div className=" relative">
+      {loading ?(
+        <Loader/>
+      ):( <div className=" relative">
     
       <div className="relative bg-black  bg-cover bg-center w-screen h-screen sm:flex sm:justify-center sm:items-center lg:grid lg:grid-cols-2 px-12  sm:p-16">
 
@@ -93,6 +105,8 @@ Experience Aaikyam: Where Music Unites and cultures Resonates ! Join our vibrant
       {showPopup && <FeaturePopup onClose={closePopup} email={email} />}
       <Announcement/>
       <Socials/>
+    </div>)}
+   
     </div>
   );
 };
