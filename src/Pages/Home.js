@@ -6,7 +6,6 @@ import "../App.css";
 import Socials from "../components/Socials";
 import Announcement from "../components/Announcement";
 import {FaDiscord} from "react-icons/fa"
-import {BsPlayCircle,BsPauseCircle} from "react-icons/bs"
 import Loader from "../components/Loader";
 import AudioPlayer from "../components/AudioPlayer";
 
@@ -129,7 +128,7 @@ Experience Aaikyam: Where Music Unites and cultures Resonates ! Join our vibrant
             </button>
           </div>
         </div>
-        <div className=" hidden  z-10   w-full sm:h-[90vh] 2xl:h-[93vh] lg:flex lg:justify-center  lg:items-center">
+        <div className=" hidden  z-10   w-full sm:h-[90vh] 2xl:h-[85vh] lg:flex lg:justify-center  lg:items-center">
           <img
             className=" relative w-full 2xl:h-[70%] sm:h-full object-contain object-center"
             src={rock}
