@@ -26,6 +26,7 @@ const FeaturePopup = ({ onClose,email }) => {
         music: fileUrl,
       };
 
+      console.log(userObject)
       // Make HTTP request to server-side endpoint
           fetch("https://api.aaikyam.studio/addMusic", {
             method: "POST",
