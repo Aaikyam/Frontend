@@ -1,22 +1,13 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Aaikyam",
+  "name": "Aaikyam: Where Cultures Resonates",
   "icons": [
     {
-      "src": "logo.jpeg",
+      "src": "https://aaikyam-music.s3.ap-south-1.amazonaws.com/socialsbg/3819ea42-755e-49d8-92ed-6bdc7d9d632d.jfif",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "type": "image/jfif"
     }
+   
   ],
   "start_url": ".",
   "display": "standalone",
