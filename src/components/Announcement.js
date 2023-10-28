@@ -1,23 +1,64 @@
 import React from 'react'
 import Marquee from "react-fast-marquee";
 import {RxDotFilled} from "react-icons/rx"
+import { useState, useEffect } from 'react';
+
+const fetchDataFromApi = async () => {
+  try {
+    const response = await fetch('https://api.aaikyam.studio/get/user');
+    const data = await response.json();
+    return data.Items;
+  } catch (error) {
+    console.error('Error fetching data from API', error);
+    return [];
+  }
+};
 
 const Announcement = () => {
+  const [announcementData, setAnnouncementData] = useState([]);
+
+  useEffect(() => {
+    fetchDataFromApi().then((data) => {
+      setAnnouncementData(data);
+    });
+  }, []);
+
   return (
-    <div className='fixed border-y-[2px] border-[#e96c32] w-[100%] h-6 z-50  sm:bottom-5 top-3 sm:top-auto bg-white flex justify-around items-center text-black backdrop-blur-md'>
-  <Marquee>
-    <div className="w-full text-base sm:text-lg flex justify-center items-center font-semibold mx-1 sm:mx-10">
-      <div className="mx-1"><RxDotFilled/></div>
-      <div>Tejas Got Featured</div>
+    <div className="fixed border-y-2 border-[#e96c32] w-full h-6 z-50 sm:bottom-5 top-3 sm:top-auto bg-white flex justify-around items-center text-black backdrop-blur-md">
+      <Marquee>
+        {announcementData.map((item, index) => (
+          <div
+            key={index}
+            className={`w-full text-base sm:text-lg flex justify-center items-center font-semibold mx-1 sm:mx-10 ${
+              item._isFeatured ? 'text-green-500' : 'text-blue-500'
+            }`}
+            style={{ color: 'black' }}
+          >
+            <div className="mx-1">
+              <RxDotFilled />
+            </div>
+            <div>
+              {item.instagram
+                ? item._isFeatured
+                  ? `Featured: ${item.instagram}`
+                  : `Upcoming Feature: ${item.instagram}`
+                : item.twitter
+                ? item._isFeatured
+                  ? `Featured: ${item.twitter}`
+                  : `Upcoming Feature: ${item.twitter}`
+                : item.facebook
+                ? item._isFeatured
+                  ? `Featured: ${item.facebook}`
+                  : `Upcoming Feature: ${item.facebook}`
+                : item._isFeatured
+                ? `Featured: ${item.title}`
+                : `Upcoming Feature: ${item.title}`}
+            </div>
+          </div>
+        ))}
+      </Marquee>
     </div>
-    <div className="w-full text-base sm:text-lg flex justify-center items-center font-semibold mx-1 sm:mx-10">
-      <div className="mx-1"><RxDotFilled/></div>
-      <div>Dhaivat Featured his music</div>
-    </div>
-  </Marquee>
-</div>
+  );
+};
 
-  )
-}
-
-export default Announcement
+export default Announcement;
