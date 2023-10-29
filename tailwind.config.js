@@ -7,7 +7,7 @@ module.exports = {
         Tilt: ["Tilt Neon", "sans-serif"],
         Rose: ["Red Rose", "sans-serif"],
         SAMAN__: ["SAMAN__", "sans-serif"],
-        Playpen:["Playpen Sans","sans-serif"],
+        Raleway:["Raleway","sans-serif"],
       },
     },
   },

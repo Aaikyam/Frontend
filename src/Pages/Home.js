@@ -2,10 +2,11 @@ import React, { useState,useEffect, useRef } from "react";
 import rock from "../assets/rock.png";
 import FeaturePopup from "../components/FeaturedPopup";
 import "../App.css";
+import {BsShareFill} from "react-icons/bs"
 import { FaFacebookSquare,FaGreaterThan,FaLessThan} from "react-icons/fa";
 import { GrInstagram } from "react-icons/gr";
 import { RiTwitterXLine } from "react-icons/ri";
-import {HiMailOpen} from "react-icons/hi"
+import {TfiEmail} from "react-icons/tfi"
 import Socials from "../components/Socials";
 import Announcement from "../components/Announcement";
 import {FaDiscord} from "react-icons/fa"
@@ -87,7 +88,7 @@ setAudioOn(true)
                   'Content-Type': 'application/json',
                 },
               });
-              console.log(response)
+              // console.log(response)
         
        }, 10800000);
        
@@ -135,7 +136,7 @@ setAudioOn(true)
         id: 4,
         child: (
           <>
-            <HiMailOpen size={30} />
+            <TfiEmail size={32} />
           </>
         ),
         href: "mailto:contact@aaikyam.studio",
@@ -151,12 +152,12 @@ setAudioOn(true)
         <Loader/>
       ):( 
       <div onMouseEnter={handleaudio} onMouseLeave={handleaudioexit} className=" w-screen h-screen relative">
-        <div className={` fixed inset-0 bg-[#e96c32] backdrop-blur-md text-white z-50 top-0 left-0 md:hidden flex justify-center items-center ${!socialopen?"w-[95%]":"w-10"} h-10 rounded-r-lg px-2`}>
+        <div className={` fixed   backdrop-blur-md text-white z-50 top-[5%] right-3 md:hidden flex justify-center items-center ${!socialopen?"w-[95%]":"w-10"} h-10 rounded-r-lg px-2`}>
         <ul className={` w-full ${!socialopen?"flex":"hidden"} flex-row  justify-between items-center`}>
     {links.map(({ id, child, href }) => (
       <li
         key={id}
-        className={`flex justify-between items-center p-4 my-2 rounded-full ml-2 hover:ml-2 hover:scale-125 duration-300`}
+        className={`flex justify-between items-center p-4 my-2 rounded-full mx-2 hover:ml-2 hover:scale-125 duration-300`}
       >
         <a
           href={href}
@@ -169,7 +170,7 @@ setAudioOn(true)
       </li>
     ))}
   </ul>
-         {socialopen?<div onClick={()=>setSocialopen(false)} className="text-xl "><FaGreaterThan/></div>:<div onClick={()=>setSocialopen(true)} className="text-xl "><FaLessThan/></div>}
+         <div onClick={()=>setSocialopen(!socialopen)} className="text-xl "><BsShareFill/></div>
         </div>
   
       <div  className="relative bg-black  bg-cover bg-center w-screen h-screen sm:flex sm:justify-center sm:items-center lg:grid lg:grid-cols-2 px-12  sm:p-16">
@@ -188,7 +189,7 @@ setAudioOn(true)
               AAIKYAM
             </div>
           </div>
-          <div className=" w-full font-Playpen cursor-default sm:w-[70%] z-10 text-white text-center">
+          <div className=" w-full font-Raleway  cursor-default sm:w-[70%] z-10 text-white text-center">
 Experience Aaikyam: Where Music Unites and cultures Resonates ! Join our vibrant creator community, share your talent in 'Get Featured,' and watch your art flourish. Stay tuned for monetization tools to turn your passion into an asset. Connect on Discord and social platforms for a collaborative journey! </div>
 
           {/* <div className=" w-[60%] h-24 mx-auto bg-black my-10"></div> */}
