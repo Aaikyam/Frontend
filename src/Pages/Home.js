@@ -2,7 +2,10 @@ import React, { useState,useEffect, useRef } from "react";
 import rock from "../assets/rock.png";
 import FeaturePopup from "../components/FeaturedPopup";
 import "../App.css";
-
+import { FaFacebookSquare,FaGreaterThan,FaLessThan} from "react-icons/fa";
+import { GrInstagram } from "react-icons/gr";
+import { RiTwitterXLine } from "react-icons/ri";
+import {HiMailOpen} from "react-icons/hi"
 import Socials from "../components/Socials";
 import Announcement from "../components/Announcement";
 import {FaDiscord} from "react-icons/fa"
@@ -30,6 +33,7 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [audioElement, setAudioElement] = useState({});
   const [audioon,setAudioOn]=useState(false)
+  const [socialopen,setSocialopen]=useState(false)
   
 
 
@@ -68,6 +72,52 @@ setAudioOn(true)
     fetchDataAndPlayAudio();
   }, []);
 
+  const links = [
+    {
+      id: 1,
+      child: (
+        <>
+          <FaFacebookSquare size={30} />
+        </>
+      ),
+      href: "https://www.facebook.com/aaikyam.music/",
+
+      
+    },
+    {
+      id: 2,
+      child: (
+        <>
+          <GrInstagram size={30} />
+        </>
+      ),
+      href: "https://www.instagram.com/aaikyam_official/",
+
+      
+    },
+    {
+      id: 3,
+      child: (
+        <>
+          <RiTwitterXLine size={30} />
+        </>
+      ),
+      href: "https://twitter.com/officialaaikyam",
+
+    },
+    {
+        id: 4,
+        child: (
+          <>
+            <HiMailOpen size={30} />
+          </>
+        ),
+        href: "mailto:contact@aaikyam.studio",
+  
+      },
+
+  ];
+
 
   return (
     <div className=" relative"  >
@@ -75,12 +125,29 @@ setAudioOn(true)
         <Loader/>
       ):( 
       <div onMouseEnter={handleaudio} onMouseLeave={handleaudioexit} className=" w-screen h-screen relative">
-  <AudioPlayer audioon={audioon} audioElement={audioElement} />
+        <div className={` fixed inset-0 bg-[#e96c32] backdrop-blur-md text-white z-50 top-0 left-0 md:hidden flex justify-center items-center ${!socialopen?"w-full":"w-10"} h-10 rounded-r-lg px-2`}>
+        <ul className={` w-full ${!socialopen?"flex":"hidden"} flex-row  justify-between items-center`}>
+    {links.map(({ id, child, href }) => (
+      <li
+        key={id}
+        className={`flex justify-between items-center p-4 my-2 rounded-full ml-2 hover:ml-2 hover:scale-125 duration-300`}
+      >
+        <a
+          href={href}
+          className="flex justify-between items-center w-full text-white"
+          target="_blank"
+          rel="noreferrer"
+        >
+          {child}
+        </a>
+      </li>
+    ))}
+  </ul>
+         {socialopen?<div onClick={()=>setSocialopen(false)} className="text-xl "><FaGreaterThan/></div>:<div onClick={()=>setSocialopen(true)} className="text-xl "><FaLessThan/></div>}
+        </div>
+  
       <div  className="relative bg-black  bg-cover bg-center w-screen h-screen sm:flex sm:justify-center sm:items-center lg:grid lg:grid-cols-2 px-12  sm:p-16">
-        
-
-        <video
-          className="absolute opacity-30 top-0 left-0 z-0 object-cover transform scale-x-[-1] w-screen h-screen"
+<video          className="absolute opacity-30 top-0 left-0 z-0 object-cover transform scale-x-[-1] w-screen h-screen"
           autoPlay
           loop
           muted
@@ -119,7 +186,7 @@ Experience Aaikyam: Where Music Unites and cultures Resonates ! Join our vibrant
             />
             <button
               onClick={openPopup}
-              className={`z-10 w-[40%] rounded-lg font-semibold text-white border bg-[#e96c32] text-center p-2 ${
+              className={`z-10 w-[40%] rounded-lg font-semibold text-white border bg-[#e96c32] text-center p-1 sm:p-2 ${
                 email ? "" : "cursor-not-allowed"
               }`}
               disabled={!email}
@@ -140,7 +207,7 @@ Experience Aaikyam: Where Music Unites and cultures Resonates ! Join our vibrant
       {showPopup && <FeaturePopup onClose={closePopup} email={email} />}
       <Announcement/>
       <Socials/>
-
+      <AudioPlayer audioon={audioon} audioElement={audioElement} />
     </div>
       )}
     </div>
