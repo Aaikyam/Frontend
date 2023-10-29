@@ -45,7 +45,7 @@ const AudioPlayer = ({audioon,audioElement}) => {
         </div>
       </div>
       </div>
-      <audio className='hidden' ref={audioRef} controls>
+      <audio className='hidden' ref={audioRef} controls loop>
         <source src={audioElement.music} type="audio/mp3" />
         
       </audio>
