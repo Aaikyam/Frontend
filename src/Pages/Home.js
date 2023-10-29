@@ -54,16 +54,42 @@ setAudioOn(true)
   }
 
   useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
     const fetchDataAndPlayAudio = async () => {
       const data = await fetchDataFromApi();
       const itemtoPlay = data.find((item) => item._isFeatured === false);
       if (itemtoPlay && itemtoPlay.music) {
-        setAudioElement(itemtoPlay);
+
+        try{
         
+      const resp = await fetch(`https://api.aaikyam.studio/update/playStatus/${itemtoPlay.content_id}`, {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+              });
+              console.log(resp)
+            }catch(err){
+              console.log(err)
+            }
+            
+            
+       setTimeout(async() => {
+            const response = await fetch(`https://api.aaikyam.studio/update/featured/${itemtoPlay.content_id}`, {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+              });
+              console.log(response)
+        
+       }, 10800000);
+       
+        setAudioElement(itemtoPlay);
       }
-      setTimeout(() => {
-        setLoading(false);
-      }, 2000);
+     
     };
     fetchDataAndPlayAudio();
   }, []);

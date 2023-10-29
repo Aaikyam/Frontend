@@ -1,7 +1,6 @@
-import React from 'react'
-import Marquee from "react-fast-marquee";
-import {RxDotFilled} from "react-icons/rx"
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import Marquee from 'react-fast-marquee';
+import { RxDotFilled } from 'react-icons/rx';
 
 const fetchDataFromApi = async () => {
   try {
@@ -38,7 +37,17 @@ const Announcement = () => {
               <RxDotFilled />
             </div>
             <div>
-              {item.instagram
+              {item._isPlaying
+                ? `Current Feature: ${
+                    item.instagram
+                      ? item.instagram
+                      : item.twitter
+                      ? item.twitter
+                      : item.facebook
+                      ? item.facebook
+                      : item.title
+                  }`
+                : item.instagram
                 ? item._isFeatured
                   ? `Featured: ${item.instagram}`
                   : `Upcoming Feature: ${item.instagram}`
