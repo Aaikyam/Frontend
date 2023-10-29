@@ -26,6 +26,9 @@ const FeaturePopup = ({ onClose,email }) => {
   const handleClearFile = () => {
     setMusicfile(null);
   };
+
+  console.log("xxx",musicfile)
+  
   
 
   const handleFormSubmit =  (e) => {
@@ -90,6 +93,7 @@ const FeaturePopup = ({ onClose,email }) => {
         });
     }
   };
+  
 
   return (
     <>{
@@ -184,6 +188,7 @@ const FeaturePopup = ({ onClose,email }) => {
         id="fileInput"
         placeholder=""
         required
+        key={musicfile ? musicfile.name : 'default'}
         name="musicfile"
         onChange={handleFileChange}
         type="file"
