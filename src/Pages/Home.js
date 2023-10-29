@@ -140,55 +140,6 @@ Experience Aaikyam: Where Music Unites and cultures Resonates ! Join our vibrant
       {showPopup && <FeaturePopup onClose={closePopup} email={email} />}
       <Announcement/>
       <Socials/>
-    
-      {/* <div
-  className="audio-controls"
-  style={{
-    position: 'absolute',
-    top: '50%',
-    left: '0%',
-    transform: 'translateY(-50%)',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    background: 'rgba(255, 255, 255, 0.15)',
-    backdropFilter: 'blur(10px)',
-    padding: '10px',
-    borderRadius: '10px',
-  }}
->
-  <button
-    onClick={playAudio}
-    style={{
-      padding: '10px 20px',
-      marginBottom: '10px',
-      backgroundColor: '#e96c32',
-      color: 'white',
-      border: 'none',
-      borderRadius: '5px',
-      cursor: 'pointer',
-      width: '100%',
-      boxSizing: 'border-box',
-    }}
-  >
-    Play
-  </button>
-  <button
-    onClick={pauseAudio}
-    style={{
-      padding: '10px 20px',
-      backgroundColor: '#e96c32',
-      color: 'white',
-      border: 'none',
-      borderRadius: '5px',
-      cursor: 'pointer',
-      width: '100%',
-      boxSizing: 'border-box',
-    }}
-  >
-    Pause
-  </button>
-</div> */}
 
     </div>
       )}
