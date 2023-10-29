@@ -23,7 +23,7 @@ const AudioPlayer = ({audioon,audioElement}) => {
     setIsPlaying(!isPlaying);
   };
   return (
-    <div className={`w-full z-50 fixed bottom-0  hover:bg-slate-950 ${!audioon?"opacity-60":"opacity-110"}`} >
+    <div className={`w-full z-40 fixed bottom-0  hover:bg-slate-950 ${!audioon?"opacity-60":"opacity-110"}`} >
     <div className=' flex justify-between items-center w-full  px-6 py-4'>
         <div className=' flex '>
           <button onClick={togglePlay} className=" hover:text-[#e96c32] text-white mx-2  rounded-md">
