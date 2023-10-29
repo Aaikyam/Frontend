@@ -1,5 +1,5 @@
 import React, { useState} from "react";
-import { MdClose } from "react-icons/md";
+import { MdClose,MdDelete } from "react-icons/md";
 import {TiTick} from "react-icons/ti"
 
 const FeaturePopup = ({ onClose,email }) => {
@@ -22,6 +22,9 @@ const FeaturePopup = ({ onClose,email }) => {
         onClose();
       }, 1000);
 
+  };
+  const handleClearFile = () => {
+    setMusicfile(null);
   };
   
 
@@ -199,8 +202,20 @@ const FeaturePopup = ({ onClose,email }) => {
         uploading ? (
           <button className=" text-black text-lg animate-spin" disabled>...</button>
         ) : !uploadDone ?(
-          <button className="px-3 py-2 text-black rounded-full border-[1px] border-black flex justify-between items-center cursor-pointer" onClick={handleUpload}>Upload</button>
-        ) : (<button className=" text-green-500" onClick={handleUpload}><TiTick size={25}/></button>)
+          <div className="flex">
+                    <button
+                      className="px-3 py-2 text-black rounded-full border-[1px] border-black flex justify-between items-center cursor-pointer"
+                      onClick={handleUpload}
+                    >
+                      Upload
+                    </button>
+                    <button
+                      className="text-red-500 ml-2"
+                      onClick={handleClearFile}
+                    >
+                      <MdDelete/>
+                    </button>
+                  </div>        ) : (<button className=" text-green-500" onClick={handleUpload}><TiTick size={25}/></button>)
       )}
     </div>
 

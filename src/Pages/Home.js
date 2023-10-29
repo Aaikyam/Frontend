@@ -33,7 +33,7 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [audioElement, setAudioElement] = useState({});
   const [audioon,setAudioOn]=useState(false)
-  const [socialopen,setSocialopen]=useState(false)
+  const [socialopen,setSocialopen]=useState(true)
   
 
 
@@ -151,7 +151,7 @@ setAudioOn(true)
         <Loader/>
       ):( 
       <div onMouseEnter={handleaudio} onMouseLeave={handleaudioexit} className=" w-screen h-screen relative">
-        <div className={` fixed inset-0 bg-[#e96c32] backdrop-blur-md text-white z-50 top-0 left-0 md:hidden flex justify-center items-center ${!socialopen?"w-full":"w-10"} h-10 rounded-r-lg px-2`}>
+        <div className={` fixed inset-0 bg-[#e96c32] backdrop-blur-md text-white z-50 top-0 left-0 md:hidden flex justify-center items-center ${!socialopen?"w-[95%]":"w-10"} h-10 rounded-r-lg px-2`}>
         <ul className={` w-full ${!socialopen?"flex":"hidden"} flex-row  justify-between items-center`}>
     {links.map(({ id, child, href }) => (
       <li
