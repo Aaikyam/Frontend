@@ -183,12 +183,12 @@ setAudioOn(true)
        
 
         <div className=" relative z-10 w-full h-[90vh] 2xl:h-[85vh] flex flex-col items-center justify-center ">
-          <div className=" w-[70%] my-10 mx-auto flex flex-col items-center">
-            <div className="text-white animate-neon SAMAN__ text-7xl text-center font-extrabold">
+          <div  className=" w-[70%] my-10 mx-auto flex flex-col items-center">
+            <div className="text-white cursor-default animate-neon SAMAN__ text-4xl sm:text-7xl text-center font-extrabold">
               AAIKYAM
             </div>
           </div>
-          <div className=" w-full sm:w-[70%] z-10 text-white text-center">
+          <div className=" w-full font-Playpen cursor-default sm:w-[70%] z-10 text-white text-center">
 Experience Aaikyam: Where Music Unites and cultures Resonates ! Join our vibrant creator community, share your talent in 'Get Featured,' and watch your art flourish. Stay tuned for monetization tools to turn your passion into an asset. Connect on Discord and social platforms for a collaborative journey! </div>
 
           {/* <div className=" w-[60%] h-24 mx-auto bg-black my-10"></div> */}
@@ -212,7 +212,7 @@ Experience Aaikyam: Where Music Unites and cultures Resonates ! Join our vibrant
             />
             <button
               onClick={openPopup}
-              className={`z-10 w-[40%] rounded-lg font-semibold text-white border bg-[#e96c32] text-center p-1 sm:p-2 ${
+              className={`z-10 w-[40%] rounded-lg font-semibold text-white border bg-[#e96c32] text-center p-2 ${
                 email ? "" : "cursor-not-allowed"
               }`}
               disabled={!email}
