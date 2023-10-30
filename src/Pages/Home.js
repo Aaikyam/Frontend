@@ -193,7 +193,7 @@ setAudioOn(true)
 Experience Aaikyam: Where Music Unites and cultures Resonates ! Join our vibrant creator community, share your talent in 'Get Featured,' and watch your art flourish. Stay tuned for monetization tools to turn your passion into an asset. Connect on Discord and social platforms for a collaborative journey! </div>
 
           {/* <div className=" w-[60%] h-24 mx-auto bg-black my-10"></div> */}
-          <button onClick={()=>window.open("https://discord.gg/etNkeftteT", "_blank")} className=" w-[45%] sm:w-[40%] md:w-[30%] flex justify-center items-center p-2 my-8 border-[1px] rounded-lg bg-white text-[#e96c32]">
+          <button onClick={()=>window.open("https://discord.gg/cH4Ee6ykrM", "_blank")} className=" w-[45%] sm:w-[40%] md:w-[30%] flex justify-center items-center p-2 my-8 border-[1px] rounded-lg bg-white text-[#e96c32]">
             <div className="mx-1 text-sm sm:text-base font-semibold ">
               JOIN DISCORD
             </div>
