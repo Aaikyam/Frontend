@@ -152,7 +152,7 @@ setAudioOn(true)
         <Loader/>
       ):( 
       <div onMouseEnter={handleaudio} onMouseLeave={handleaudioexit} className=" w-screen h-screen relative">
-        <div className={` fixed   backdrop-blur-md text-white z-50 top-[5%] right-3 md:hidden flex justify-center items-center ${!socialopen?"w-[95%]":"w-10"} h-10 rounded-r-lg px-2`}>
+        <div className={` fixed   backdrop-blur-md text-white z-50 top-[5%] right-3 md:hidden flex justify-center items-center ${!socialopen?"w-[95%] rounded-r-lg":"w-10 rounded-full"} h-10  px-2`}>
         <ul className={` w-full ${!socialopen?"flex":"hidden"} flex-row  justify-between items-center`}>
     {links.map(({ id, child, href }) => (
       <li
