@@ -27,7 +27,7 @@ const FeaturePopup = ({ onClose,email }) => {
     setMusicfile(null);
   };
 
-  console.log("xxx",musicfile)
+  
   
   
 
@@ -55,7 +55,7 @@ const FeaturePopup = ({ onClose,email }) => {
             },
           })
             .then((response) => response.json())
-            .then((data) => { setSubmitDone(true); UploadDoneIn();})
+            .then((data) => {setSubmitDone(true); UploadDoneIn();})
             .catch((error) => console.error(error));
     
   };
@@ -188,11 +188,12 @@ const FeaturePopup = ({ onClose,email }) => {
         id="fileInput"
         placeholder=""
         required
-        key={musicfile ? musicfile.name : 'default'}
+        // key={musicfile ? musicfile.name : 'default'}
         name="musicfile"
         onChange={handleFileChange}
         type="file"
       />
+     
       {!musicfile ? (
         <label
           htmlFor="fileInput"
