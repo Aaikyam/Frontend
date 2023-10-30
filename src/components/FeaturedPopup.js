@@ -37,6 +37,7 @@ const FeaturePopup = ({ onClose,email }) => {
     // You can now use the fileUrl state to send the URL to the server
     
       // Perform the POST request with the fileUrl
+      if(fileUrl){
       const userObject = {
         [selected]: username,
         artist,
@@ -57,6 +58,10 @@ const FeaturePopup = ({ onClose,email }) => {
             .then((response) => response.json())
             .then((data) => {setSubmitDone(true); UploadDoneIn();})
             .catch((error) => console.error(error));
+          }
+          else{
+            alert("Please Upload Your Music File");
+          }
     
   };
 
