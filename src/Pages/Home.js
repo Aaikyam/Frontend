@@ -8,7 +8,6 @@ import { GrInstagram } from "react-icons/gr";
 import { RiTwitterXLine } from "react-icons/ri";
 import {TfiEmail} from "react-icons/tfi"
 import Socials from "../components/Socials";
-import Announcement from "../components/Announcement";
 import {FaDiscord} from "react-icons/fa"
 import Loader from "../components/Loader";
 import AudioPlayerSection from "../components/AudioPlayerSection";
@@ -16,9 +15,8 @@ import MusicSection from "../components/MusicSection";
 import { motion } from "framer-motion";
 
 
-
 const Home = () => {
-  
+  const [active,setActive]=useState(false)
   const[activeMusic,setActiveMusic]=useState({
     "title":"",
     "artist":"",
@@ -34,7 +32,6 @@ const Home = () => {
       return data.Items;
     } catch (error) {
       console.error("Error fetching data from API", error);
-      return [];
     }
   };
   
@@ -168,7 +165,7 @@ const Home = () => {
       ):( 
         <div className=" w-screen h-full bg-black">
       <div  className=" w-screen h-screen relative">
-        <div className={` absolute   backdrop-blur-md text-white z-50 top-[5%] right-3 md:hidden flex justify-center items-center ${!socialopen?"w-[95%] rounded-r-lg":"w-10 rounded-full"} h-10  px-2`}>
+        <div className={` absolute   backdrop-blur-md text-white z-50 top-[3%] right-3 md:hidden flex justify-center items-center ${!socialopen?"w-[95%] rounded-r-lg":"w-10 rounded-full"} h-10  px-2`}>
         <ul className={` w-full ${!socialopen?"flex":"hidden"} flex-row  justify-between items-center`}>
     {links.map(({ id, child, href }) => (
       <li
@@ -249,7 +246,7 @@ Experience Aaikyam: Where Music Unites and cultures Resonates ! Join our vibrant
        
       </div>
       {showPopup && <FeaturePopup onClose={closePopup} email={email} />}
-      <div   className=' absolute xs:bottom-6 bottom-24 w-screen   flex justify-center items-center z-20 md:z-0'>
+      <div   className=' absolute xs:bottom-6 bottom-20 w-screen   flex justify-center items-center z-20 md:z-0'>
         <a onClick={handleanimate}  href='#musicSection'>
           <div  className=' w-[35px] h-[64px] border-4 flex justify-center items-start rounded-3xl border-slate-400 p-2'>
             <motion.dev 
@@ -265,11 +262,11 @@ Experience Aaikyam: Where Music Unites and cultures Resonates ! Join our vibrant
           </div>
         </a>
       </div>
-      <Announcement/>
+      {/* <Announcement/> */}
       <Socials/>
-      <AudioPlayerSection  audioElement={audioElement} activeMusic={activeMusic}  />
+      {(activeMusic || audioElement)&&<AudioPlayerSection  audioElement={audioElement} activeMusic={activeMusic} active={active} setActive={setActive}  />}
     </div>
-    <MusicSection music={music} setActiveMusic={setActiveMusic} />
+    {music &&<MusicSection music={music} setActiveMusic={setActiveMusic} activeMusic={activeMusic} active={active} setActive={setActive} />}
     </div>
       )}
     </div>
