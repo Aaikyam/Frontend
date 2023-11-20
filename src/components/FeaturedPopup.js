@@ -7,12 +7,17 @@ const FeaturePopup = ({ onClose,email }) => {
   const [artist, setArtist] = useState("");
   const [username, setUserName] = useState("");
   const [musicfile, setMusicfile] = useState(null);
+  const [thumbnailfile, sethTumbnailfile] = useState(null);
+  const [thumbnailuploading, setThumbnailUploading] = useState(false);
+  const [thumbnailuploadDone, setThumbnailUploadDone] = useState(false);
+  const [thumbsubmitDone, setThumbSubmitDone] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [selected, setSelected] = useState("instagram");
   const [uploading, setUploading] = useState(false);
   const [uploadDone, setUploadDone] = useState(false); // Added uploading state
   const [submitDone, setSubmitDone] = useState(false);
   const [fileUrl, setFileUrl] = useState(""); // Added state to store the received URL
+  const [thumbnailfileUrl, setThumbnailFileUrl] = useState("");
   const options = ["instagram", "twitter", "facebook"];
 
   const UploadDoneIn=() => {
@@ -23,27 +28,34 @@ const FeaturePopup = ({ onClose,email }) => {
       }, 1000);
 
   };
-  const handleClearFile = () => {
-    setMusicfile(null);
+  const handleThumbClearFile = () => {
+    sethTumbnailfile(null);
   };
+  const ThumbUploadDoneIn=() => {
+    
+    setTimeout(() => {
+      setThumbSubmitDone(false);
+    }, 1000);
 
-  
-  
-  
+};
+const handleClearFile = () => {
+  setMusicfile(null);
+};
+
+console.log("thumb",thumbnailfileUrl)
 
   const handleFormSubmit =  (e) => {
     e.preventDefault();
     
-    // You can now use the fileUrl state to send the URL to the server
-    
-      // Perform the POST request with the fileUrl
-      if(fileUrl){
+
+      if(fileUrl && thumbnailfileUrl){
       const userObject = {
         [selected]: username,
         artist,
         email: email,
         title:title,
         music: fileUrl,
+        thumbnail: thumbnailfileUrl
       };
 
       console.log(userObject)
@@ -56,11 +68,11 @@ const FeaturePopup = ({ onClose,email }) => {
             },
           })
             .then((response) => response.json())
-            .then((data) => {setSubmitDone(true); UploadDoneIn();})
+            .then((data) => {setSubmitDone(true); ThumbUploadDoneIn(); UploadDoneIn(); console.log(data)})
             .catch((error) => console.error(error));
           }
           else{
-            alert("Please Upload Your Music File");
+            alert("Please Upload Your Files");
           }
     
   };
@@ -68,6 +80,10 @@ const FeaturePopup = ({ onClose,email }) => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setMusicfile(file);
+  };
+  const handleThumbFileChange = (e) => {
+    const file = e.target.files[0];
+    sethTumbnailfile(file);
   };
 
   const handleUpload = () => {
@@ -95,6 +111,34 @@ const FeaturePopup = ({ onClose,email }) => {
         .catch((error) => {
           console.error("Error:", error);
           setUploading(false);
+        });
+    }
+  };
+  const handleThumbUpload = () => {
+    if (thumbnailfile) {
+      setThumbnailUploading(true);
+      const formData = new FormData();
+      formData.append("file", thumbnailfile);
+
+      fetch("https://api.aaikyam.studio/upload/thumbnail", {
+        method: "POST",
+        body: formData,
+      })
+      .then((response) => {
+        if (response.ok) {
+          return response.json(); // This is a promise
+        } else {
+          throw new Error("Network response was not ok.");
+        }
+      })
+        .then((data) => {
+          setThumbnailFileUrl(data.thumbnail_url);
+          setThumbnailUploading(false);
+          setThumbnailUploadDone(true)
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          setThumbnailUploading(false);
         });
     }
   };
@@ -182,6 +226,53 @@ const FeaturePopup = ({ onClose,email }) => {
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
+          <div className=" flex justify-between items-center shadow-lg mb-4 w-full p-3 bg-white rounded-lg">
+      {!thumbnailfile ? (
+        <div>Thumbnail</div>
+      ) : (
+        <span className={`mx-2 text-xs ${!thumbnailuploadDone?"text-red-500":"text-green-500"}`}>{thumbnailfile.name}</span>
+      )}
+      <input
+        className="hidden"
+        id="fileInpt"
+        placeholder=""
+        required
+        // key={musicfile ? musicfile.name : 'default'}
+        name="thumbnailfile"
+        onChange={handleThumbFileChange}
+        type="file"
+      />
+     
+      {!thumbnailfile ? (
+        <label
+          htmlFor="fileInpt"
+          className="px-3 py-2 rounded-full border-[1px] border-black flex justify-between items-center cursor-pointer"
+        >
+          <div className="mx-1">Select File</div>
+          <div className="mx-1">
+            <img src="" alt="" />
+          </div>
+        </label>
+      ) : (
+        thumbnailuploading ? (
+          <button className=" text-black text-lg animate-spin" disabled>...</button>
+        ) : !thumbnailuploadDone ?(
+          <div className="flex">
+                    <button
+                      className="px-3 py-2 text-black rounded-full border-[1px] border-black flex justify-between items-center cursor-pointer"
+                      onClick={handleThumbUpload}
+                    >
+                      Upload
+                    </button>
+                    <button
+                      className="text-red-500 ml-2"
+                      onClick={handleThumbClearFile}
+                    >
+                      <MdDelete/>
+                    </button>
+                  </div>        ) : (<button className=" text-green-500" onClick={handleThumbUpload}><TiTick size={25}/></button>)
+      )}
+    </div>
           <div className=" flex justify-between items-center shadow-lg mb-4 w-full p-3 bg-white rounded-lg">
       {!musicfile ? (
         <div>Music File</div>

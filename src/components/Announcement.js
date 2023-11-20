@@ -23,12 +23,12 @@ const Announcement = () => {
   }, []);
 
   return (
-    <div className="fixed border-y-2 border-[#e96c32] w-full h-6 z-30 sm:top-5 top-3  bg-white flex justify-around items-center text-black backdrop-blur-md">
+    <div className=" absolute border-y-2 border-[#e96c32] w-screen h-6 z-30 sm:top-5 top-3  bg-white flex justify-around items-center text-black backdrop-blur-md">
       <Marquee>
         {announcementData.map((item, index) => (
           <div
             key={index}
-            className={`w-full text-base sm:text-lg flex justify-center items-center font-semibold mx-1 sm:mx-10 ${
+            className={`w-screen text-base sm:text-lg flex justify-center items-center font-semibold mx-1 sm:mx-10 ${
               item._isFeatured ? 'text-green-500' : 'text-blue-500'
             }`}
             style={{ color: 'black' }}
