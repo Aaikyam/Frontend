@@ -1,13 +1,26 @@
-import React from "react";
+import React,{useState} from "react";
 import { motion } from "framer-motion";
 import { fadeIn, textVariant } from "../utils/motion";
-import { MdOutlinePlayCircleFilled} from "react-icons/md";
+import { MdOutlinePlayCircleFilled,MdPauseCircle } from "react-icons/md";
 import { GrInstagram } from "react-icons/gr";
 
 
-const MusicSection = ({ music, setActiveMusic}) => {
+const MusicSection = ({ music,activeMusic, setActiveMusic,active,setActive}) => {
   
-  console.log("music", music);
+
+  const handleMusicClick = (musics) => {
+    
+      setActiveMusic({
+        title: musics.title,
+        artist: musics.artist,
+        music: musics.music,
+        thumbnail: musics.thumbnail,
+      });
+      setActive(true)
+
+    }
+    // console.log(active)
+  
   return (
     <>
       <motion.div id="musicSection"  variants={textVariant()} className=" px-20">
@@ -22,7 +35,7 @@ const MusicSection = ({ music, setActiveMusic}) => {
             variants={fadeIn("right", "spring", 0.5 * 1, 0.75)}
             className="md:w-[280px]  w-full h-[350px] rounded-lg relative overflow-hidden transition-transform duration-300 transform-gpu "
           >
-            <div className={` relative text-white w-full h-[100%] bg-cover bg-center bg-no-repeat rounded-lg py-4 px-6 flex flex-col justify-end  overflow-hidden transition-transform duration-300 transform-gpu hover:scale-105 hover:-z-10 hover:opacity-70 `} style={{
+            <div className={` relative text-white w-full h-[100%] bg-cover bg-center bg-no-repeat rounded-lg py-4 px-6 flex flex-col justify-end ${activeMusic.music === musics.music && active===true ?"opacity-70":"opacity-100"}  overflow-hidden transition-transform duration-300 transform-gpu hover:scale-105 hover:-z-10 hover:opacity-70 `} style={{
     backgroundImage: `url(${musics.thumbnail})`,
     transition: 'opacity 0.3s ease-in-out',
   }}>
@@ -47,19 +60,15 @@ const MusicSection = ({ music, setActiveMusic}) => {
               >
                 <GrInstagram size={30} />
               </div>}
-              <div
-                onClick={() =>{
-                  setActiveMusic({
-                    title: musics.title,
-                    artist: musics.artist,
-                    music: musics.music,
-                    thumbnail: musics.thumbnail
-                  });
-                  
-                }}
-              >
-                <MdOutlinePlayCircleFilled className=" cursor-pointer" size={70} style={{ zIndex: 1 }} />
-              </div>
+              <div onClick={() => handleMusicClick(musics)}>
+            {activeMusic.music === musics.music && active===true ? (
+              
+              <div className=" hidden"></div>
+            ) : (
+              
+              < MdOutlinePlayCircleFilled  className="cursor-pointer" size={70} />
+            )}
+          </div>
               {musics.title.slice(19)?<div style={{ zIndex: 1 }} className=" my-1 text-[32px] font-bold">
                {musics.title.slice(0,18)}...
               </div>:<div style={{ zIndex: 1 }} className=" my-1 text-[32px] font-bold">

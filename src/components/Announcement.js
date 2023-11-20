@@ -21,6 +21,7 @@ const Announcement = () => {
       setAnnouncementData(data);
     });
   }, []);
+  
 
   return (
     <div className=" absolute border-y-2 border-[#e96c32] w-screen h-6 z-30 sm:top-5 top-3  bg-white flex justify-around items-center text-black backdrop-blur-md">

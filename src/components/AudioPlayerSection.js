@@ -3,54 +3,6 @@ import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 
 const AudioPlayerSection = ({ activeMusic, audioElement}) => {
-  // const audioRef = useRef(null);
-  // const [currentTime, setCurrentTime] = useState(0);
-  // const [duration, setDuration] = useState(0);
-  // const [progress, setProgress] = useState(0);
-  
-
-  // useEffect(() => {
-  //   if (activeMusic && activeMusic.music) {
-  //     audioRef.current.src = activeMusic.music;
-
-  //   } else {
-  //     audioRef.current.src = audioElement.music;
-
-  //   }
-  //   if (isPlaying) {
-  //     audioRef.current.play().catch(error => console.error('Playback error:', error));
-  //   } else {
-  //     audioRef.current.pause();
-  //   }
-  // }, [audioElement,activeMusic.music]);
-
-  // useEffect(() => {
-  //   const updateTime = () => {
-  //     setCurrentTime(audioRef.current.currentTime);
-  //     setDuration(audioRef.current.duration);
-  //     setProgress((audioRef.current.currentTime / audioRef.current.duration) * 100);
-  //   };
-
-  //   audioRef.current.addEventListener('timeupdate', updateTime);
-
-  //   return () => {
-  //     audioRef.current.removeEventListener('timeupdate', updateTime);
-  //   };
-  // }, []);
-
-  
-
-  // const handleProgressBarClick = (e) => {
-  //   const clickPosition = e.clientX - e.target.getBoundingClientRect().left;
-  //   const progressBarWidth = e.target.offsetWidth;
-  //   const newTime = (clickPosition / progressBarWidth) * duration;
-
-  //   audioRef.current.currentTime = newTime;
-  //   setProgress((newTime / duration) * 100);
-  // };
-  // console.log("music",activeMusic)
-  // console.log("before",audioElement.music)
-  // console.log("after",activeMusic.music)
 
   return (
     <div className={`w-screen z-40 fixed bottom-0  bg-slate-950 opacity-110`} >
@@ -61,7 +13,7 @@ const AudioPlayerSection = ({ activeMusic, audioElement}) => {
             <AudioPlayer
               src={activeMusic.music ? activeMusic.music : audioElement.music}
               style={{background: 'transparent'}}
-              autoPlay              
+              autoPlay             
               layout="horizontal-reverse"
               showJumpControls={false}
               customControlsSection={
@@ -74,7 +26,7 @@ const AudioPlayerSection = ({ activeMusic, audioElement}) => {
   }}></div>
           <div className='text-white mx-2 flex flex-col justify-between items-left'>
             <div className=' font-semibold text-sm md:text-base'>{activeMusic.title?activeMusic.title.slice(0,10):audioElement.title.slice(0,10)}</div>
-            <div className=' text-xs md:text-sm'>{activeMusic.artist?activeMusic.artist:audioElement.artist}</div>
+            <div className=' text-xs md:text-sm'>{activeMusic.artist?activeMusic.artist.slice(0,15):audioElement.artist.slice(0,15)}</div>
           </div>
           </div>,
 
@@ -87,8 +39,6 @@ const AudioPlayerSection = ({ activeMusic, audioElement}) => {
                   // RHAP_UI.DURATION
                 ]
               }
-              
-
             />
           
         </div>
