@@ -3,7 +3,7 @@ import rock from "../assets/rock.png";
 import FeaturePopup from "../components/FeaturedPopup";
 import "../App.css";
 import {BsShareFill} from "react-icons/bs"
-import { FaFacebookSquare,FaGreaterThan,FaLessThan} from "react-icons/fa";
+import { FaFacebookSquare} from "react-icons/fa";
 import { GrInstagram } from "react-icons/gr";
 import { RiTwitterXLine } from "react-icons/ri";
 import {TfiEmail} from "react-icons/tfi"
@@ -11,20 +11,33 @@ import Socials from "../components/Socials";
 import Announcement from "../components/Announcement";
 import {FaDiscord} from "react-icons/fa"
 import Loader from "../components/Loader";
-import AudioPlayer from "../components/AudioPlayer";
+import AudioPlayerSection from "../components/AudioPlayerSection";
+import MusicSection from "../components/MusicSection";
+import { motion } from "framer-motion";
 
-const fetchDataFromApi = async () => {
-  try {
-    const response = await fetch("https://api.aaikyam.studio/get/user");
-    const data = await response.json();
-    return data.Items;
-  } catch (error) {
-    console.error("Error fetching data from API", error);
-    return [];
-  }
-};
+
 
 const Home = () => {
+  
+  const[activeMusic,setActiveMusic]=useState({
+    "title":"",
+    "artist":"",
+    "music":"",
+    "thumbnail":""
+  })
+  const [music,setMusic]=useState([])
+  const fetchDataFromApi = async () => {
+    try {
+      const response = await fetch("https://api.aaikyam.studio/get/user");
+      const data = await response.json();
+      setMusic(data.Items);
+      return data.Items;
+    } catch (error) {
+      console.error("Error fetching data from API", error);
+      return [];
+    }
+  };
+  
   const video =
     "https://aaikyam-music.s3.ap-south-1.amazonaws.com/socialsbg/_import_61b44313f40047.97328362+(1)+(1)+(1)+(1).mp4";
 
@@ -33,7 +46,6 @@ const Home = () => {
   const emailInputRef = useRef(null);
   const [loading, setLoading] = useState(true);
   const [audioElement, setAudioElement] = useState({});
-  const [audioon,setAudioOn]=useState(false)
   const [socialopen,setSocialopen]=useState(true)
   
 
@@ -51,12 +63,7 @@ const Home = () => {
     setEmail("");
   };
 
-  const handleaudio =()=>{
-setAudioOn(true)
-  }
-  const handleaudioexit=()=>{
-    setAudioOn(false)
-  }
+  
 
   useEffect(() => {
     setTimeout(() => {
@@ -144,6 +151,14 @@ setAudioOn(true)
       },
 
   ];
+  const handleanimate = (e)=> {
+    e.preventDefault();
+  console.log("clicked")
+    const musicSection = document.getElementById('musicSection');
+    if (musicSection) {
+      musicSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
 
   return (
@@ -151,8 +166,9 @@ setAudioOn(true)
       {loading ?(
         <Loader/>
       ):( 
-      <div onMouseEnter={handleaudio} onMouseLeave={handleaudioexit} className=" w-screen h-screen relative">
-        <div className={` fixed   backdrop-blur-md text-white z-50 top-[5%] right-3 md:hidden flex justify-center items-center ${!socialopen?"w-[95%] rounded-r-lg":"w-10 rounded-full"} h-10  px-2`}>
+        <div className=" w-screen h-full bg-black">
+      <div  className=" w-screen h-screen relative">
+        <div className={` absolute   backdrop-blur-md text-white z-50 top-[5%] right-3 md:hidden flex justify-center items-center ${!socialopen?"w-[95%] rounded-r-lg":"w-10 rounded-full"} h-10  px-2`}>
         <ul className={` w-full ${!socialopen?"flex":"hidden"} flex-row  justify-between items-center`}>
     {links.map(({ id, child, href }) => (
       <li
@@ -200,10 +216,10 @@ Experience Aaikyam: Where Music Unites and cultures Resonates ! Join our vibrant
             <div className=" mx-1"><FaDiscord size={30}/></div>
 
           </button>
-          <div className="z-10 my-4 bg-white w-full sm:w-[60%] lg:w-[50%] flex justify-center items-center rounded-lg  ">
+          <div className="z-50 my-4 bg-white w-full sm:w-[60%] lg:w-[50%] flex justify-center items-center rounded-lg  ">
             <input
               ref={emailInputRef}
-              className="w-[60%] bg-white p-2 rounded-l-lg focus:outline-none"
+              className="w-[60%] z-50 bg-white p-2 rounded-l-lg focus:outline-none"
               type="email"
               name="email"
               required
@@ -222,7 +238,7 @@ Experience Aaikyam: Where Music Unites and cultures Resonates ! Join our vibrant
             </button>
           </div>
         </div>
-        <div className=" hidden  z-10   w-full sm:h-[90vh] 2xl:h-[85vh] lg:flex lg:justify-center  lg:items-center">
+        <div className=" hidden  z-0   w-full sm:h-[90vh] 2xl:h-[85vh] lg:flex lg:justify-center  lg:items-center">
           <img
             className=" relative w-full 2xl:h-[70%] sm:h-full object-contain object-center"
             src={rock}
@@ -230,11 +246,30 @@ Experience Aaikyam: Where Music Unites and cultures Resonates ! Join our vibrant
           />
           
         </div>
+       
       </div>
       {showPopup && <FeaturePopup onClose={closePopup} email={email} />}
+      <div   className=' absolute xs:bottom-6 bottom-24 w-screen   flex justify-center items-center z-20 md:z-0'>
+        <a onClick={handleanimate}  href='#musicSection'>
+          <div  className=' w-[35px] h-[64px] border-4 flex justify-center items-start rounded-3xl border-slate-400 p-2'>
+            <motion.dev 
+            
+            animate={{
+              y:[0,24,0]
+              }} 
+              transition={{
+                duration:2, 
+                repeat:Infinity, 
+                repeatType:'loop'}} 
+              className='w-3 h-3 rounded-full bg-slate-400 mb-1'/>
+          </div>
+        </a>
+      </div>
       <Announcement/>
       <Socials/>
-      <AudioPlayer audioon={audioon} audioElement={audioElement} />
+      <AudioPlayerSection  audioElement={audioElement} activeMusic={activeMusic}  />
+    </div>
+    <MusicSection music={music} setActiveMusic={setActiveMusic} />
     </div>
       )}
     </div>

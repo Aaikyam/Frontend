@@ -8,6 +8,7 @@ module.exports = {
         Rose: ["Red Rose", "sans-serif"],
         SAMAN__: ["SAMAN__", "sans-serif"],
         Raleway:["Raleway","sans-serif"],
+        Poppins:["Poppins","sans-serif"]
       },
     },
   },
