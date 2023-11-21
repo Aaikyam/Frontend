@@ -12,13 +12,13 @@ const FeaturePopup = ({ onClose,email }) => {
   const [thumbnailuploadDone, setThumbnailUploadDone] = useState(false);
   const [thumbsubmitDone, setThumbSubmitDone] = useState(false);
   const [isActive, setIsActive] = useState(false);
-  const [selected, setSelected] = useState("instagram");
+  const [selected, setSelected] = useState("Instagram");
   const [uploading, setUploading] = useState(false);
   const [uploadDone, setUploadDone] = useState(false); // Added uploading state
   const [submitDone, setSubmitDone] = useState(false);
   const [fileUrl, setFileUrl] = useState(""); // Added state to store the received URL
   const [thumbnailfileUrl, setThumbnailFileUrl] = useState("");
-  const options = ["instagram", "twitter", "facebook"];
+  const options = ["Instagram", "Twitter", "Facebook"];
 
   const UploadDoneIn=() => {
     
@@ -50,7 +50,7 @@ const handleClearFile = () => {
 
       if(fileUrl){
       const userObject = {
-        [selected]: username,
+        [selected==="Instagram"?"instagram":selected==="Twitter"?"twitter":"facebook"]: username,
         artist,
         email: email,
         title:title,
