@@ -42,20 +42,20 @@ const handleClearFile = () => {
   setMusicfile(null);
 };
 
-console.log("thumb",thumbnailfileUrl)
+// console.log("thumb",thumbnailfileUrl)
 
   const handleFormSubmit =  (e) => {
     e.preventDefault();
     
 
-      if(fileUrl && thumbnailfileUrl){
+      if(fileUrl){
       const userObject = {
         [selected]: username,
         artist,
         email: email,
         title:title,
         music: fileUrl,
-        thumbnail: thumbnailfileUrl
+        thumbnail: thumbnailfileUrl?thumbnailfileUrl:""
       };
 
       console.log(userObject)
@@ -228,7 +228,7 @@ console.log("thumb",thumbnailfileUrl)
           </div>
           <div className=" flex justify-between items-center shadow-lg mb-4 w-full p-3 bg-white rounded-lg">
       {!thumbnailfile ? (
-        <div>Thumbnail</div>
+        <div>Thumbnail <span className=" opacity-60 text-sm md:text-lg">(Optional)</span></div>
       ) : (
         <span className={`mx-2 text-xs ${!thumbnailuploadDone?"text-red-500":"text-green-500"}`}>{thumbnailfile.name}</span>
       )}
@@ -236,7 +236,7 @@ console.log("thumb",thumbnailfileUrl)
         className="hidden"
         id="fileInpt"
         placeholder=""
-        required
+        // required
         // key={musicfile ? musicfile.name : 'default'}
         name="thumbnailfile"
         onChange={handleThumbFileChange}
@@ -248,8 +248,8 @@ console.log("thumb",thumbnailfileUrl)
           htmlFor="fileInpt"
           className="px-3 py-2 rounded-full border-[1px] border-black flex justify-between items-center cursor-pointer"
         >
-          <div className="mx-1">Select File</div>
-          <div className="mx-1">
+          <div className="text-center">Select File</div>
+          <div className="">
             <img src="" alt="" />
           </div>
         </label>
@@ -295,8 +295,8 @@ console.log("thumb",thumbnailfileUrl)
           htmlFor="fileInput"
           className="px-3 py-2 rounded-full border-[1px] border-black flex justify-between items-center cursor-pointer"
         >
-          <div className="mx-1">Select File</div>
-          <div className="mx-1">
+          <div className="">Select File</div>
+          <div className="">
             <img src="" alt="" />
           </div>
         </label>

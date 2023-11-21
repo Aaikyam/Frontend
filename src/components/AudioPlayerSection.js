@@ -13,7 +13,7 @@ const AudioPlayerSection = ({ activeMusic, audioElement}) => {
             <AudioPlayer
               src={activeMusic.music ? activeMusic.music : audioElement.music}
               style={{background: 'transparent'}}
-              autoPlay             
+              autoPlay={false}             
               layout="horizontal-reverse"
               showJumpControls={false}
               customControlsSection={
@@ -22,7 +22,7 @@ const AudioPlayerSection = ({ activeMusic, audioElement}) => {
                   RHAP_UI.MAIN_CONTROLS,
                   <div className=' flex w-[100%] justify-start items-center '>
           <div className='w-12 h-12 bg-cover bg-center mx-1 rounded-md' style={{
-    backgroundImage: `url(${activeMusic.thumbnail?activeMusic.thumbnail:audioElement.thumbnail})`,
+    backgroundImage: `url(${activeMusic.music?activeMusic.thumbnail:audioElement.thumbnail})`,
   }}></div>
           <div className='text-white mx-2 flex flex-col justify-between items-left'>
             <div className=' font-semibold text-sm md:text-base'>{activeMusic.title?activeMusic.title.slice(0,10):audioElement.title.slice(0,10)}</div>

@@ -23,7 +23,7 @@ const MusicSection = ({ music,activeMusic, setActiveMusic,active,setActive}) => 
   
   return (
     <>
-      <motion.div id="musicSection"  variants={textVariant()} className=" px-20">
+      <motion.div id="musicSection"  variants={textVariant()} className=" px-12 md:px-20">
         <h2  className={`text-[40px] font-Poppins font-bold text-white`}>
           Latest Music.
         </h2>
