@@ -47,9 +47,24 @@ const AudioPlayerSection = ({ activeMusic, audioElement}) => {
           .rhap_main-controls-button {
             color: white !important;
           }
+          .rhap_progress-bar {
+            height: 2px;
+          }
           .rhap_progress-filled {
             background-color: #e96c32 !important;
-            height: '1px'
+            height: 2px;
+          }
+          .rhap_download-progress {
+            background-color: white !important;
+
+          }
+          .rhap_progress-indicator {
+
+            width: 10px;
+            height: 10px;
+            margin-left: -10px;
+            top: -4px;
+
           }
           .rhap_time {
             color: white !important;
