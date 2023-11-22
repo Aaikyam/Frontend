@@ -25,8 +25,8 @@ const AudioPlayerSection = ({ activeMusic, audioElement}) => {
     backgroundImage: `url(${activeMusic.music?activeMusic.thumbnail:audioElement.thumbnail})`,
   }}></div>
           <div className='text-white mx-2 flex flex-col justify-between items-left'>
-            <div className=' font-semibold text-sm md:text-base'>{activeMusic.title?activeMusic.title.slice(0,10):audioElement.title.slice(0,10)}</div>
-            <div className=' text-xs md:text-sm'>{activeMusic.artist?activeMusic.artist.slice(0,15):audioElement.artist.slice(0,15)}</div>
+            <div className=' font-semibold text-sm md:text-base'>{activeMusic.title?activeMusic.title:audioElement.title}</div>
+            <div className=' text-xs md:text-sm'>{activeMusic.artist?activeMusic.artist:audioElement.artist}</div>
           </div>
           </div>,
 
