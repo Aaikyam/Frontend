@@ -2,7 +2,7 @@ import React from 'react';
 import AudioPlayer, { RHAP_UI } from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 
-const AudioPlayerSection = ({ activeMusic, audioElement}) => {
+const AudioPlayerSection = ({ activeMusic, audioElement,music}) => {
 
   return (
     <div className={`w-screen z-40 fixed bottom-0  bg-slate-950 opacity-110`} >
@@ -11,7 +11,7 @@ const AudioPlayerSection = ({ activeMusic, audioElement}) => {
         {/* <audio ref={audioRef} src={activeMusic.music ? activeMusic.music : audioElement.music}></audio> */}
           
             <AudioPlayer
-              src={activeMusic.music ? activeMusic.music : audioElement.music}
+              src={activeMusic.music ? activeMusic.music : audioElement.music?audioElement.music:music[music.length-1].music}
               style={{background: 'transparent'}}
               autoPlay={false}             
               layout="horizontal-reverse"
@@ -22,11 +22,11 @@ const AudioPlayerSection = ({ activeMusic, audioElement}) => {
                   RHAP_UI.MAIN_CONTROLS,
                   <div className=' flex w-[100%] justify-start items-center '>
           <div className='w-12 h-12 bg-cover bg-center mx-1 rounded-md' style={{
-    backgroundImage: `url(${activeMusic.music?activeMusic.thumbnail:audioElement.thumbnail})`,
+    backgroundImage: `url(${activeMusic.music?activeMusic.thumbnail:audioElement.thumbnail?audioElement.thumbnail:music[music.length-1].thumbnail})`,
   }}></div>
           <div className='text-white mx-2 flex flex-col justify-between items-left'>
-            <div className=' font-semibold text-sm md:text-base'>{activeMusic.title?activeMusic.title:audioElement.title}</div>
-            <div className=' text-xs md:text-sm'>{activeMusic.artist?activeMusic.artist:audioElement.artist}</div>
+            <div className=' font-semibold text-sm md:text-base'>{activeMusic.title?activeMusic.title.slice(0,10):audioElement.title?audioElement.title.slice(0,10):music[music.length-1].title.slice(0,10)}</div>
+            <div className=' text-xs md:text-sm'>{activeMusic.artist?activeMusic.artist.slice(0,10):audioElement.artist?audioElement.artist.slice(0,10):music[music.length-1].artist.slice(0,10)}</div>
           </div>
           </div>,
 
