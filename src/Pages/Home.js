@@ -246,9 +246,9 @@ Experience Aaikyam: Where Music Unites and cultures Resonates ! Join our vibrant
        
       </div>
       {showPopup && <FeaturePopup onClose={closePopup} email={email} />}
-      <div   className=' absolute xs:bottom-6 bottom-20 w-screen   flex justify-center items-center z-20 md:z-0'>
+      <div   className=' absolute xs:bottom-6 bottom-32 w-screen   flex justify-center items-center z-20 md:z-0'>
         <a onClick={handleanimate}  href='#musicSection'>
-          <div  className=' w-[35px] h-[64px] border-4 flex justify-center items-start rounded-3xl border-slate-400 p-2'>
+          <div  className=' w-[30px] h-[50px] border-4 flex justify-center items-start rounded-3xl border-slate-400 p-1'>
             <motion.dev 
             
             animate={{
@@ -258,7 +258,7 @@ Experience Aaikyam: Where Music Unites and cultures Resonates ! Join our vibrant
                 duration:2, 
                 repeat:Infinity, 
                 repeatType:'loop'}} 
-              className='w-3 h-3 rounded-full bg-slate-400 mb-1'/>
+              className='w-2 h-2 rounded-full bg-slate-400 mb-1'/>
           </div>
         </a>
       </div>
