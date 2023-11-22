@@ -264,7 +264,7 @@ Experience Aaikyam: Where Music Unites and cultures Resonates ! Join our vibrant
       </div>
       {/* <Announcement/> */}
       <Socials/>
-      {(activeMusic || audioElement)&&<AudioPlayerSection  audioElement={audioElement} activeMusic={activeMusic} active={active} setActive={setActive}  />}
+      {(activeMusic || audioElement)&&<AudioPlayerSection music={music}  audioElement={audioElement} activeMusic={activeMusic} active={active} setActive={setActive}  />}
     </div>
     {music &&<MusicSection music={music} setActiveMusic={setActiveMusic} activeMusic={activeMusic} active={active} setActive={setActive} />}
     </div>
