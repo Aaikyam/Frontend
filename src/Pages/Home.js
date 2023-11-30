@@ -24,6 +24,23 @@ const Home = () => {
     "thumbnail":""
   })
   const [music,setMusic]=useState([])
+  const[ismobile,setIsMobile]=useState(false);
+
+  useEffect(()=>{
+    const mediaQuery=window.matchMedia(`(max-width: 1023px)`)
+
+    setIsMobile(mediaQuery.matches)
+
+    const handlemediaQueryChange=(event)=>{
+      setIsMobile(event.matches);
+    }
+
+    mediaQuery.addEventListener('change',handlemediaQueryChange);
+    return ()=>{
+      mediaQuery.removeEventListener('change',handlemediaQueryChange);
+    }
+
+  },[])
   const fetchDataFromApi = async () => {
     try {
       const response = await fetch("https://api.aaikyam.studio/get/user");
@@ -234,19 +251,7 @@ Experience Aaikyam: Where Music Unites and cultures Resonates ! Join our vibrant
               Get Featured
             </button>
           </div>
-        </div>
-        <div className=" hidden  z-0   w-full sm:h-[90vh] 2xl:h-[85vh] lg:flex lg:justify-center  lg:items-center">
-          <img
-            className=" relative w-full 2xl:h-[70%] sm:h-full object-contain object-center"
-            src={rock}
-            alt=""
-          />
-          
-        </div>
-       
-      </div>
-      {showPopup && <FeaturePopup onClose={closePopup} email={email} />}
-      <div   className=' absolute xs:bottom-6 bottom-32 w-screen   flex justify-center items-center z-20 md:z-0'>
+          {ismobile&&<div   className=' w-screen   flex justify-center items-center z-50 mt-6 md:mt-10 md:z-0'>
         <a onClick={handleanimate}  href='#musicSection'>
           <div  className=' w-[30px] h-[50px] border-4 flex justify-center items-start rounded-3xl border-slate-400 p-1'>
             <motion.dev 
@@ -261,7 +266,35 @@ Experience Aaikyam: Where Music Unites and cultures Resonates ! Join our vibrant
               className='w-2 h-2 rounded-full bg-slate-400 mb-1'/>
           </div>
         </a>
+      </div>}
+        </div>
+        <div className=" hidden  z-0   w-full sm:h-[90vh] 2xl:h-[85vh] lg:flex lg:justify-center  lg:items-center">
+          <img
+            className=" relative w-full 2xl:h-[70%] sm:h-full object-contain object-center"
+            src={rock}
+            alt=""
+          />
+          
+        </div>
+       
       </div>
+      {showPopup && <FeaturePopup onClose={closePopup} email={email} />}
+      {!ismobile&&<div   className=' absolute xs:bottom-6 bottom-32 w-screen   flex justify-center items-center z-20 md:z-0'>
+        <a onClick={handleanimate}  href='#musicSection'>
+          <div  className=' w-[30px] h-[50px] border-4 flex justify-center items-start rounded-3xl border-slate-400 p-1'>
+            <motion.dev 
+            
+            animate={{
+              y:[0,24,0]
+              }} 
+              transition={{
+                duration:2, 
+                repeat:Infinity, 
+                repeatType:'loop'}} 
+              className='w-2 h-2 rounded-full bg-slate-400 mb-1'/>
+          </div>
+        </a>
+      </div>}
       {/* <Announcement/> */}
       <Socials/>
       {(activeMusic || audioElement)&&<AudioPlayerSection music={music}  audioElement={audioElement} activeMusic={activeMusic} active={active} setActive={setActive}  />}
