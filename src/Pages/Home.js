@@ -251,7 +251,7 @@ Experience Aaikyam: Where Music Unites and cultures Resonates ! Join our vibrant
               Get Featured
             </button>
           </div>
-          {ismobile&&<div   className=' w-screen   flex justify-center items-center z-50 mt-6 md:mt-10 md:z-0'>
+          {ismobile&&<div   className=' w-screen   flex justify-center items-center z-50 mt-1 sm:mt-8  md:mt-10 md:z-0'>
         <a onClick={handleanimate}  href='#musicSection'>
           <div  className=' w-[30px] h-[50px] border-4 flex justify-center items-start rounded-3xl border-slate-400 p-1'>
             <motion.dev 
@@ -279,7 +279,7 @@ Experience Aaikyam: Where Music Unites and cultures Resonates ! Join our vibrant
        
       </div>
       {showPopup && <FeaturePopup onClose={closePopup} email={email} />}
-      {!ismobile&&<div   className=' absolute xs:bottom-6 bottom-32 w-screen   flex justify-center items-center z-20 md:z-0'>
+      {!ismobile&&<div   className=' absolute  bottom-[7.5rem] w-screen   flex justify-center items-center z-20 md:z-0'>
         <a onClick={handleanimate}  href='#musicSection'>
           <div  className=' w-[30px] h-[50px] border-4 flex justify-center items-start rounded-3xl border-slate-400 p-1'>
             <motion.dev 
